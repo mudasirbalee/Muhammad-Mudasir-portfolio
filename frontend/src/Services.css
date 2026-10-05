@@ -1,0 +1,261 @@
+.service-directory {
+  width: min(1280px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 60px 0 110px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 70px;
+}
+
+.service-directory-intro {
+  position: sticky;
+  top: 140px;
+}
+
+.service-directory-intro .eyebrow {
+  margin-bottom: 24px;
+}
+
+.service-directory-intro h2 {
+  color: #f6f4ee;
+  font-size: clamp(34px, 3.7vw, 51px);
+  font-weight: 500;
+  line-height: 1.13;
+  letter-spacing: -1.8px;
+}
+
+.service-directory-intro h2 > span {
+  display: block;
+  margin-top: 6px;
+}
+
+.directory-description {
+  max-width: 420px;
+  margin-top: 25px;
+  color: #d0ceca;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.directory-note {
+  max-width: 350px;
+  margin-top: 22px;
+  color: #b5afa3;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.service-directory-list {
+  min-width: 0;
+  border-top: 1px solid #49453e;
+}
+
+.directory-item {
+  position: relative;
+  border-bottom: 1px solid #49453e;
+  transition: background 220ms ease;
+}
+
+.directory-item.is-open {
+  background: linear-gradient(
+    115deg,
+    rgba(225, 197, 143, 0.085),
+    rgba(225, 197, 143, 0.015)
+  );
+}
+
+.directory-item h3 {
+  margin: 0;
+}
+
+.directory-trigger {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 26px 20px;
+  border: 0;
+  background: transparent;
+  color: #f1eee7;
+  text-align: left;
+}
+
+.directory-number {
+  color: #bda982;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.directory-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(18px, 1.7vw, 23px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+}
+
+.directory-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #625742;
+  border-radius: 50%;
+  color: #e6cc98;
+  transition:
+    background 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.is-open .directory-toggle {
+  background: #e6cc98;
+  color: #292218;
+  border-color: #e6cc98;
+}
+
+.directory-panel {
+  padding: 0 25px 29px 70px;
+}
+
+.directory-panel > p {
+  color: #d0ceca;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.directory-panel ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin: 23px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.directory-panel li {
+  position: relative;
+  padding-left: 15px;
+  color: #e3d9c4;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.directory-panel li::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: #d6b97f;
+}
+
+.directory-panel > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  color: #f0d5a0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.directory-trigger:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (hover: hover) {
+  .directory-trigger:hover {
+    background: rgba(230, 204, 152, 0.035);
+  }
+
+  .directory-trigger:hover .directory-toggle {
+    transform: rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .directory-panel:not([hidden]) {
+    animation: directory-reveal 260ms ease both;
+  }
+
+  @keyframes directory-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .service-directory {
+    gap: 35px;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  }
+
+  .directory-trigger {
+    gap: 12px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .directory-panel {
+    padding-left: 58px;
+  }
+}
+
+@media (max-width: 800px) {
+  .service-directory {
+    width: calc(100% - 40px);
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 35px 0 75px;
+  }
+
+  .service-directory-intro {
+    position: static;
+  }
+
+  .directory-description {
+    max-width: 600px;
+  }
+
+  .service-directory-intro h2 {
+    font-size: clamp(34px, 7vw, 46px);
+  }
+}
+
+@media (max-width: 480px) {
+  .directory-trigger {
+    grid-template-columns: 23px minmax(0, 1fr) 30px;
+    gap: 10px;
+    padding: 22px 8px;
+  }
+
+  .directory-toggle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .directory-title {
+    font-size: 18px;
+  }
+
+  .directory-panel {
+    padding: 0 12px 25px 41px;
+  }
+
+  .directory-panel ul {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

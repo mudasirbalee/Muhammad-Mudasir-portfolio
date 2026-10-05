@@ -1,0 +1,118 @@
+.reviews-section {
+  width: min(1280px, calc(100% - 40px));
+  margin: auto;
+  padding: 65px 0 90px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 55px;
+}
+
+.reviews-section h2 {
+  margin: 20px 0;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #faf3e7;
+}
+
+.reviews-section h2 > span {
+  display: block;
+}
+
+.reviews-description,
+.reviews-profile p {
+  color: #d0c5b3;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.reviews-profile {
+  padding: 35px;
+  border: 1px solid #7b6540;
+  border-radius: 23px;
+  background:
+    radial-gradient(at top right, #51412b66, transparent 70%),
+    #26221c;
+}
+
+.reviews-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #edd099;
+  font-size: 13px;
+}
+
+.reviews-profile h3 {
+  margin: 25px 0 8px;
+  color: #faf3e7;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.reviews-profile p {
+  margin: 0 0 25px;
+}
+
+@media (max-width: 800px) {
+  .reviews-section {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 40px 0 65px;
+  }
+}
+.sample-reviews {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.sample-review-notice {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #cabba0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sample-review-card {
+  padding: 27px;
+  border: 1px solid #695537;
+  border-radius: 19px;
+  background: linear-gradient(145deg, #322b20, #211e19);
+}
+
+.sample-review-card > span {
+  color: #dabb80;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.sample-review-card h3 {
+  margin: 17px 0 12px;
+  color: #f7efdf;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sample-review-card p {
+  margin: 0;
+  color: #d0c5b3;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+@media (max-width: 950px) {
+  .sample-reviews {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .sample-reviews {
+    grid-template-columns: 1fr;
+  }
+}
