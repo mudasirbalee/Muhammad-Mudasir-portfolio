@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Thank You | Muhammad Mudasir</title>
+
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(ellipse at 80% 15%, #b99a611c, transparent 55%),
+          linear-gradient(145deg, #191816, #211e19 55%, #191816);
+        color: #faf3e7;
+        font-family: Arial, sans-serif;
+      }
+
+      main {
+        width: min(100%, 620px);
+        padding: clamp(30px, 7vw, 64px);
+        border: 1px solid #79613d;
+        border-radius: 28px;
+        background:
+          radial-gradient(at top right, #b99a611a, transparent 65%),
+          linear-gradient(145deg, #30291f, #211e19);
+        box-shadow: 0 24px 80px #00000035;
+        text-align: center;
+        animation: arrive 650ms ease-out both;
+      }
+
+      .check {
+        display: grid;
+        place-items: center;
+        width: 78px;
+        height: 78px;
+        margin: 0 auto 28px;
+        border: 1px solid #e7c66b80;
+        border-radius: 50%;
+        background: #e7c66b10;
+        color: #e7c66b;
+        font-size: 36px;
+      }
+
+      .eyebrow {
+        color: #e7c66b;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0;
+        font-family: Impact, "Arial Narrow", sans-serif;
+        font-size: clamp(44px, 9vw, 72px);
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      .message {
+        margin: 0 auto 32px;
+        max-width: 420px;
+        color: #d8cdbb;
+        line-height: 1.8;
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 48px;
+        padding: 14px 24px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f0d9a5, #dfbd7e);
+        color: #191813;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      a:focus-visible {
+        outline: 2px solid #faf3e7;
+        outline-offset: 5px;
+      }
+
+      @keyframes arrive {
+        from { opacity: 0; transform: translateY(22px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        main { animation: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="check" aria-hidden="true">✓</div>
+      <p class="eyebrow" id="eyebrow">Enquiry submitted</p>
+      <h1 id="heading">Thank you!</h1>
+      <p class="message" id="message">
+        Your project enquiry has been submitted successfully.
+        I’ll review your details and get back to you.
+      </p>
+      <a href="/">
+        <span id="back">Back to portfolio</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </main>
+
+    <script>
+      if (new URLSearchParams(window.location.search).get('lang') === 'es') {
+        document.documentElement.lang = 'es';
+        document.title = 'Gracias | Muhammad Mudasir';
+        document.getElementById('eyebrow').textContent = 'Consulta enviada';
+        document.getElementById('heading').textContent = '¡Gracias!';
+        document.getElementById('message').textContent =
+          'Tu consulta se ha enviado correctamente. Revisaré los detalles y me pondré en contacto contigo.';
+        document.getElementById('back').textContent = 'Volver al portfolio';
+      }
+    </script>
+  </body>
+</html>

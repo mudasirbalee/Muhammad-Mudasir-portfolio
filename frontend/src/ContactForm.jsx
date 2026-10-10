@@ -1,6 +1,6 @@
-import { useState } from 'react'
+
 import { ArrowUpRight } from 'lucide-react'
-import { profile } from './content'
+import { useRef, useState } from 'react'
 import './ContactForm.css'
 
 const services = [
@@ -163,19 +163,32 @@ function SelectField({ name, label, options, t, labelIndex, wide = false }) {
 
 export default function ContactForm({ language = 'en' }) {
   const locale = language === 'es' ? 'es' : 'en'
-  const t = copy[locale]
-  const labelIndex = locale === 'es' ? 2 : 1
+  const es = locale === 'es'
+  const labelIndex = es ? 2 : 1
 
-  const [messageLink, setMessageLink] = useState('')
+  const t = {
+    ...copy[locale],
+    submit: es ? 'Enviar consulta' : 'Send enquiry',
+    note: es
+      ? 'Tu consulta se enviará de forma segura a través de Formspree.'
+      : 'Your enquiry will be submitted securely through Formspree.',
+  }
 
-  function handleSubmit(event) {
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
+  const submitting = useRef(false)
+
+  async function handleSubmit(event) {
     event.preventDefault()
+    if (submitting.current) return
 
     const form = event.currentTarget
     const data = new FormData(form)
     const get = name => String(data.get(name) || '').trim()
 
-    for (const field of ['name', 'phone', 'details']) {
+    setError('')
+
+    for (const field of ['name', 'email', 'phone', 'details']) {
       const input = form.elements.namedItem(field)
       input.setCustomValidity('')
 
@@ -187,92 +200,74 @@ export default function ContactForm({ language = 'en' }) {
     }
 
     const phone = get('phone')
-    const digitCount = phone.replace(/\D/g, '').length
+    const digits = phone.replace(/\D/g, '').length
 
-    if (
-      !/^\+?[\d\s().-]+$/.test(phone) ||
-      digitCount < 7 ||
-      digitCount > 15
-    ) {
+    if (!/^\+?[\d\s().-]+$/.test(phone) || digits < 7 || digits > 15) {
       const input = form.elements.namedItem('phone')
       input.setCustomValidity(t.invalidPhone)
       input.reportValidity()
       return
     }
 
+    if (!form.reportValidity()) return
+
     const selectedLabel = (options, key) =>
       options.find(([value]) => value === get(key))?.[labelIndex] || ''
 
-    const lines = [
-      t.heading,
-      '',
-      `${t.name}: ${get('name')}`,
-      `${t.email}: ${get('email')}`,
-      `${t.phone}: ${phone}`,
-      ...(get('company') ? [`${t.company}: ${get('company')}`] : []),
-      ...(get('website') ? [`${t.website}: ${get('website')}`] : []),
-      ...(get('country') ? [`${t.country}: ${get('country')}`] : []),
-      `${t.service}: ${selectedLabel(services, 'service')}`,
-      `${t.budget}: ${selectedLabel(budgets, 'budget')}`,
-      `${t.timeline}: ${selectedLabel(timelines, 'timeline')}`,
-      '',
-      `${t.details}:`,
-      get('details'),
-    ]
+    const payload = {
+      name: get('name'),
+      email: get('email'),
+      phone,
+      company: get('company'),
+      website: get('website'),
+      country: get('country'),
+      service: selectedLabel(services, 'service'),
+      budget: selectedLabel(budgets, 'budget'),
+      timeline: selectedLabel(timelines, 'timeline'),
+      message: get('details'),
+      consent: data.get('consent') === 'on' ? 'Yes' : 'No',
+      language: locale,
+      _subject: 'New portfolio project enquiry',
+      _gotcha: get('_gotcha'),
+    }
 
-    const link = new URL(profile.whatsapp)
-    link.searchParams.set('text', lines.join('\n'))
+    submitting.current = true
+    setSending(true)
 
-    setMessageLink(link.href)
-    window.open(link.href, '_blank', 'noopener,noreferrer')
+    try {
+      const response = await fetch('https://formspree.io/f/xvkzrrbl', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error('Submission failed')
+      }
+    } catch {
+      setError(
+        es
+          ? 'No se pudo confirmar el envío. Tus datos siguen aquí. Comprueba tu conexión e inténtalo de nuevo.'
+          : 'We could not confirm your submission. Your details are still here. Check your connection and try again.'
+      )
+      submitting.current = false
+      setSending(false)
+      return
+    }
+
+    window.location.assign(`/thank-you/index.html?lang=${locale}`)
   }
 
   function clearFeedback(event) {
     event.target.setCustomValidity?.('')
-
-    if (messageLink) {
-      setMessageLink('')
-    }
+    if (error) setError('')
   }
-  if (messageLink) {
-    return (
-      <div className="enquiry-panel enquiry-thanks" role="status">
-        <span className="enquiry-thanks-icon" aria-hidden="true">✓</span>
 
-        <h3>
-          {locale === 'es' ? '¡Gracias!' : 'Thank you!'}
-        </h3>
-
-        <p>
-          {locale === 'es'
-            ? 'Tu mensaje está preparado. Pulsa Enviar en WhatsApp para completar tu consulta.'
-            : 'Your project message is ready. Press Send in WhatsApp to complete your enquiry.'}
-        </p>
-
-        <a
-          className="primary-button"
-          href={messageLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t.open}
-        </a>
-
-        <button
-          type="button"
-          className="enquiry-thanks-back"
-          onClick={() => setMessageLink('')}
-        >
-          {locale === 'es' ? 'Nueva consulta' : 'Start a new enquiry'}
-        </button>
-      </div>
-    )
-  }
   return (
-    <div
-      className="enquiry-panel"
-      onPointerMove={moveFormGlow}
-    >
+    <div className="enquiry-panel" onPointerMove={moveFormGlow}>
       <div className="enquiry-heading">
         <h3>{t.title}</h3>
         <p>{t.intro}</p>
@@ -284,137 +279,128 @@ export default function ContactForm({ language = 'en' }) {
         onSubmit={handleSubmit}
         onInput={clearFeedback}
         onChange={clearFeedback}
+        aria-busy={sending}
       >
-        <div className="enquiry-grid">
-          <Field label={`${t.name} *`}>
-            <input
-              name="name"
-              autoComplete="name"
-              required
-              maxLength={100}
-            />
-          </Field>
-
-          <Field label={`${t.email} *`}>
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              maxLength={254}
-            />
-          </Field>
-
-          <Field label={`${t.phone} *`}>
-            <input
-              name="phone"
-              type="tel"
-              autoComplete="tel"
-              required
-              maxLength={40}
-              placeholder="+92 300 1234567"
-            />
-          </Field>
-
-          <Field label={`${t.company} (${t.optional})`}>
-            <input
-              name="company"
-              autoComplete="organization"
-              maxLength={120}
-            />
-          </Field>
-
-          <Field label={`${t.website} (${t.optional})`}>
-            <input
-              name="website"
-              type="url"
-              autoComplete="url"
-              placeholder="https://"
-              maxLength={300}
-            />
-          </Field>
-
-          <Field label={`${t.country} (${t.optional})`}>
-            <input
-              name="country"
-              maxLength={100}
-            />
-          </Field>
-
-          <SelectField
-            name="service"
-            label={t.service}
-            options={services}
-            t={t}
-            labelIndex={labelIndex}
-            wide
-          />
-
-          <SelectField
-            name="budget"
-            label={t.budget}
-            options={budgets}
-            t={t}
-            labelIndex={labelIndex}
-          />
-
-          <SelectField
-            name="timeline"
-            label={t.timeline}
-            options={timelines}
-            t={t}
-            labelIndex={labelIndex}
-          />
-
-          <Field label={`${t.details} *`} wide>
-            <textarea
-              name="details"
-              rows={3}
-              required
-              maxLength={2000}
-              placeholder={t.placeholder}
-            />
-          </Field>
-        </div>
-
-        <label className="enquiry-consent">
-          <input
-            type="checkbox"
-            name="consent"
-            required
-          />
-          <span>{t.consent}</span>
-        </label>
-
-        <p
-          className="enquiry-note"
-          id="enquiry-submit-note"
+        <fieldset
+          disabled={sending}
+          style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
         >
-          {t.note}
-        </p>
-
-        <button
-          type="submit"
-          className="primary-button enquiry-submit"
-          aria-describedby="enquiry-submit-note"
-        >
-          {t.submit}
-          <ArrowUpRight size={19} aria-hidden="true" />
-        </button>
-
-        {messageLink && (
-          <div className="enquiry-feedback">
-            <p role="status">{t.status}</p>
-
-            <a
-              href={messageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t.open}
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+          <div hidden aria-hidden="true">
+            <label>
+              Leave this empty
+              <input name="_gotcha" tabIndex={-1} autoComplete="off" />
+            </label>
           </div>
+
+          <div className="enquiry-grid">
+            <Field label={`${t.name} *`}>
+              <input name="name" autoComplete="name" required maxLength={100} />
+            </Field>
+
+            <Field label={`${t.email} *`}>
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                maxLength={254}
+              />
+            </Field>
+
+            <Field label={`${t.phone} *`}>
+              <input
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                required
+                maxLength={40}
+                placeholder="+92 300 1234567"
+              />
+            </Field>
+
+            <Field label={`${t.company} (${t.optional})`}>
+              <input
+                name="company"
+                autoComplete="organization"
+                maxLength={120}
+              />
+            </Field>
+
+            <Field label={`${t.website} (${t.optional})`}>
+              <input
+                name="website"
+                type="url"
+                autoComplete="url"
+                placeholder="https://"
+                maxLength={300}
+              />
+            </Field>
+
+            <Field label={`${t.country} (${t.optional})`}>
+              <input name="country" maxLength={100} />
+            </Field>
+
+            <SelectField
+              name="service"
+              label={t.service}
+              options={services}
+              t={t}
+              labelIndex={labelIndex}
+              wide
+            />
+
+            <SelectField
+              name="budget"
+              label={t.budget}
+              options={budgets}
+              t={t}
+              labelIndex={labelIndex}
+            />
+
+            <SelectField
+              name="timeline"
+              label={t.timeline}
+              options={timelines}
+              t={t}
+              labelIndex={labelIndex}
+            />
+
+            <Field label={`${t.details} *`} wide>
+              <textarea
+                name="details"
+                rows={3}
+                required
+                maxLength={2000}
+                placeholder={t.placeholder}
+              />
+            </Field>
+          </div>
+
+          <label className="enquiry-consent">
+            <input type="checkbox" name="consent" required />
+            <span>{t.consent}</span>
+          </label>
+
+          <p className="enquiry-note" id="enquiry-submit-note">
+            {t.note}
+          </p>
+
+          <button
+            type="submit"
+            className="primary-button enquiry-submit"
+            aria-describedby="enquiry-submit-note"
+            disabled={sending}
+            style={sending ? { opacity: 0.65, cursor: 'wait' } : undefined}
+          >
+            {sending ? (es ? 'Enviando…' : 'Sending…') : t.submit}
+            <ArrowUpRight size={19} aria-hidden="true" />
+          </button>
+        </fieldset>
+
+        {error && (
+          <p role="alert" style={{ color: '#ffb4a8', lineHeight: 1.7 }}>
+            {error}
+          </p>
         )}
       </form>
     </div>

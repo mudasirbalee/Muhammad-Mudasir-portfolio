@@ -2983,3 +2983,46 @@ html {
     animation: none;
   }
 }
+/* Why Work With Me: dono heading lines center */
+.portfolio #why-me .wm-heading h2 {
+  text-align: center;
+}
+
+.portfolio #why-me .wm-heading h2 > span {
+  margin-inline: auto;
+}
+
+/* Mobile: tamam project filter buttons nazar aayen */
+@media (max-width: 600px) {
+  .portfolio #projects .pg-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .portfolio #projects .pg-filters button {
+    flex: 0 1 auto;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 12px;
+    white-space: normal;
+  }
+}
+
+/* Footer ka extra Back to top link hatao */
+.portfolio .portfolio-footer .footer-top {
+  display: none;
+}
+/* Projects ka Pause movement button */
+#projects .pg-toolbar > button {
+  display: none;
+}
+
+/* Reviews ka Pause button aur uski hint */
+#reviews .rv-mobile-controls {
+  display: none;
+}
