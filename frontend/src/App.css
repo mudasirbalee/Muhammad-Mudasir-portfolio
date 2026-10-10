@@ -2454,3 +2454,532 @@ html {
     padding: 12px 15px;
   }
 }
+/* Navigation and section placement */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 115px;
+}
+
+.portfolio [id] {
+  scroll-margin-top: 115px;
+}
+
+.portfolio .hero-section {
+  margin-bottom: 0;
+}
+
+.portfolio .hero-section + .stack-section {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.portfolio .site-header {
+  width: min(1440px, calc(100% - 32px));
+  gap: 18px;
+  padding: 13px 18px;
+  background: rgba(20, 20, 19, 0.96);
+  border-color: #ffffff18;
+}
+
+.portfolio .site-header .brand {
+  order: 0;
+  flex-shrink: 0;
+}
+
+.portfolio .site-header .navigation {
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.portfolio .site-header .header-controls {
+  order: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.portfolio .navigation > a:not(.nav-cta) {
+  position: relative;
+  padding: 10px 0;
+  color: #c4c0b6;
+  font-size: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.portfolio .navigation > a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #e7c66b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.portfolio .navigation > a:hover,
+.portfolio .navigation > a[aria-current='location'] {
+  color: #e7c66b;
+}
+
+.portfolio .navigation > a:not(.nav-cta):hover::after,
+.portfolio .navigation > a[aria-current='location']::after {
+  transform: scaleX(1);
+}
+
+.portfolio .navigation .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border: 1px solid #e7c66b;
+  border-radius: 10px;
+  background: #e7c66b;
+  color: #191813;
+  font-size: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.portfolio .navigation .nav-cta:hover,
+.portfolio .navigation .nav-cta[aria-current='location'] {
+  background: #f0d58b;
+  color: #191813;
+}
+
+.portfolio .site-header a:focus-visible,
+.portfolio .site-header button:focus-visible {
+  outline: 2px solid #e7c66b;
+  outline-offset: 5px;
+}
+
+.portfolio .site-header .menu-toggle {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .portfolio .site-header {
+    top: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .portfolio .site-header .header-controls {
+    margin-left: auto;
+  }
+
+  .portfolio .site-header .menu-toggle {
+    display: inline-flex;
+  }
+
+  .portfolio .site-header .navigation {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 16px;
+    max-height: calc(100dvh - 115px);
+    overflow-y: auto;
+    border: 1px solid #ffffff20;
+    border-radius: 18px;
+    background: #191916;
+    box-shadow: 0 20px 50px #00000045;
+  }
+
+  .portfolio .site-header .navigation.is-open {
+    display: flex;
+  }
+
+  .portfolio .navigation > a:not(.nav-cta) {
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .portfolio .navigation > a:not(.nav-cta)::after {
+    display: none;
+  }
+
+  .portfolio .navigation > a[aria-current='location']:not(.nav-cta) {
+    background: #e7c66b14;
+  }
+
+  .portfolio .navigation .nav-cta {
+    margin-top: 8px;
+    padding: 13px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio .site-header {
+    width: calc(100% - 20px);
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .portfolio .site-header .brand {
+    gap: 7px;
+  }
+
+  .portfolio .site-header .brand-name {
+    font-size: 19px;
+  }
+
+  .portfolio .site-header .brand-symbol {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .portfolio .navigation > a::after {
+    transition: none;
+  }
+}
+/* Primary action buttons */
+.portfolio :is(.primary-button, .hv-primary, .navigation .nav-cta) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 13px 21px;
+  border: 1px solid #f0d58b;
+  border-radius: 12px;
+  background: linear-gradient(125deg, #f0d58b, #d9b65c);
+  color: #201c13;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 0 #fff4cc80,
+    0 5px 15px #00000018;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+/* Secondary action buttons */
+.portfolio :is(.hv-secondary, .about-actions .text-link) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 13px 21px;
+  border: 1px solid #e7c66b40;
+  border-radius: 12px;
+  background: #e7c66b06;
+  color: #eee3c9;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    transform 250ms ease,
+    background 250ms ease,
+    border-color 250ms ease;
+}
+
+.portfolio :is(
+  .primary-button,
+  .hv-primary,
+  .hv-secondary,
+  .nav-cta,
+  .about-actions .text-link
+) svg {
+  flex-shrink: 0;
+  transition: transform 250ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .portfolio :is(.primary-button, .hv-primary, .navigation .nav-cta):hover {
+    transform: translateY(-3px);
+    color: #201c13;
+    box-shadow:
+      inset 0 1px 0 #fff4cc80,
+      0 10px 24px #d9b65c20;
+  }
+
+  .portfolio :is(.hv-secondary, .about-actions .text-link):hover {
+    transform: translateY(-3px);
+    border-color: #e7c66b90;
+    background: #e7c66b12;
+  }
+
+  .portfolio :is(
+    .primary-button,
+    .hv-primary,
+    .hv-secondary,
+    .nav-cta,
+    .about-actions .text-link
+  ):hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+.portfolio :is(
+  .primary-button,
+  .hv-primary,
+  .hv-secondary,
+  .nav-cta,
+  .about-actions .text-link
+):focus-visible {
+  outline: 2px solid #f0d58b;
+  outline-offset: 5px;
+}
+
+.portfolio :is(.primary-button, .hv-primary, .hv-secondary):active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio :is(
+    .primary-button,
+    .hv-primary,
+    .hv-secondary,
+    .nav-cta,
+    .about-actions .text-link
+  ),
+  .portfolio :is(
+    .primary-button,
+    .hv-primary,
+    .hv-secondary,
+    .nav-cta,
+    .about-actions .text-link
+  ) svg {
+    transition: none;
+  }
+}
+/* Skills, Experience and Process — matching gold accents */
+#skills .sk-ribbon-1,
+#experience .rs-highlight,
+#process .pr-intro mark,
+#process .pr-icon,
+#process .pr-cta {
+  background: #e7c66b;
+  color: #191813;
+}
+
+#process .pr-icon,
+#process .pr-cta {
+  border-color: #c5a655;
+}
+
+#experience .rs-company,
+#process .pr-number,
+#process .pr-card small {
+  color: #e7c66b;
+}
+
+#experience .rs-timeline,
+#process .pr-timeline {
+  border-left-color: #b99a61;
+}
+
+#experience .rs-marker {
+  background: #b99a61;
+  box-shadow: 0 0 0 1px #b99a61;
+}
+
+#experience .rs-card li::marker {
+  color: #e7c66b;
+}
+
+#experience .rs-card:hover {
+  border-color: #b99a61;
+}
+/* Main headings — same font and size */
+.portfolio #home h1,
+.portfolio #about h2,
+.portfolio #experience .rs-intro h2,
+.portfolio #services h2,
+.portfolio #projects .pg-heading h2,
+.portfolio #why-me .wm-heading h2,
+.portfolio #process .pr-intro h2,
+.portfolio #reviews .rv-heading h2,
+.portfolio #faq h2,
+.portfolio #contact h2 {
+  padding: 0;
+  background: transparent;
+  color: #f5f1e7;
+  -webkit-text-fill-color: #f5f1e7;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Golden highlight ONLY on the bottom line */
+.portfolio #home h1 > span,
+.portfolio #about h2 .gradient-text,
+.portfolio #experience .rs-intro h2 .rs-highlight,
+.portfolio #services h2 .gradient-text,
+.portfolio #projects .pg-heading h2 > span,
+.portfolio #why-me .wm-heading h2 > span,
+.portfolio #process .pr-intro h2 > mark,
+.portfolio #reviews .rv-heading h2 > span,
+.portfolio #faq h2 .gradient-text,
+.portfolio #contact h2 .gradient-text {
+  display: table;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 6px;
+  padding: 3px 8px 6px;
+  background: linear-gradient(115deg, #f0d9a5, #dfbd7e);
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  color: #191813;
+  -webkit-text-fill-color: #191813;
+  font: inherit;
+}
+
+/* Experience and Process — dark background */
+#experience.rs-section,
+#process.pr-section {
+  background:
+    radial-gradient(
+      ellipse at top right,
+      rgba(185, 154, 97, 0.09),
+      transparent 55%
+    ),
+    linear-gradient(145deg, #191816, #211e19 55%, #191816);
+  color: #f5f1e7;
+}
+
+#experience .rs-kicker,
+#experience .rs-project-label,
+#process .pr-eyebrow {
+  color: #c6b18a;
+}
+
+#experience .rs-summary,
+#process .pr-summary {
+  color: #c1b9ab;
+}
+
+#experience .rs-date {
+  color: #e7c66b;
+}
+
+#experience .rs-contact {
+  color: #eee3c9;
+  border-color: #79613d;
+}
+
+#experience .rs-marker {
+  border-color: #191816;
+}
+
+#experience .rs-card,
+#process .pr-card {
+  background:
+    radial-gradient(
+      circle at top right,
+      #b99a6114,
+      transparent 65%
+    ),
+    #24211c;
+  border-color: #514632;
+}
+/* Availability badge + live Pakistan clock */
+.hero-v2 .live-availability {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  max-width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e7c66b40;
+  border-radius: 16px;
+  background:
+    radial-gradient(at top left, #e7c66b12, transparent 70%),
+    #211e19;
+  box-shadow: 0 8px 24px #00000020;
+  color: #eee3c9;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.live-availability-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-availability-dot {
+  position: relative;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e7c66b;
+  box-shadow: 0 0 12px #e7c66b65;
+}
+
+.live-availability-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid #e7c66b80;
+  border-radius: 50%;
+  animation: availability-pulse 2.4s ease-out infinite;
+}
+
+.live-availability-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 9px;
+  border: 1px solid #e7c66b20;
+  border-radius: 8px;
+  background: #151411;
+}
+
+.live-availability-clock > span {
+  color: #b9ae99;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.live-availability-clock time {
+  min-width: 8ch;
+  color: #e7c66b;
+  font-family: ui-monospace, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes availability-pulse {
+  from { transform: scale(0.8); opacity: 0.8; }
+  to { transform: scale(1.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-availability-dot::after {
+    animation: none;
+  }
+}

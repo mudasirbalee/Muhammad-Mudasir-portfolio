@@ -149,58 +149,73 @@ export function HeroSpecialties({ language = 'en' }) {
 
 export function useScrollReveal(language) {
   useEffect(() => {
-    const reduced = window.matchMedia(
+    const preference = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     )
 
-    if (reduced.matches || !('IntersectionObserver' in window)) return
-
-    // Gallery cards keep their existing horizontal movement.
-    const elements = document.querySelectorAll(`
-      .hero-copy > *,
-      .hero-art,
-      .expertise-item,
-      .portrait-column,
-      .about-copy > *,
-      .stat-card,
-      .services-heading > *,
-      .service-card,
-      .services-action,
-      .pg-heading > *,
-      .pg-filters,
-      .pg-toolbar,
-      .pg-gallery,
-.process-intro > *,
-.process-step,
-.faq-intro > *,
-.faq-item,
-.skills-section > *,
-.skills-group,
-.sample-review-card,
-.reviews-section > *,
-.contact-copy > *,
-.contact-availability,
-.portfolio-footer
-    `)
+    if (
+      preference.matches ||
+      !('IntersectionObserver' in window) ||
+      !Element.prototype.animate
+    ) return
 
     const animations = new Set()
 
+    const selector = [
+      '.hero-copy > *',
+      '.hero-art',
+      '.expertise-item',
+      '.portrait-column',
+      '.about-copy > *',
+      '.stat-card',
+      '.services-heading > *',
+      '.service-card',
+      '.services-action',
+      '.pg-heading > *',
+      '.pg-filters',
+      '.skills-section > .eyebrow',
+      '.skills-section > h2',
+      '.skills-description',
+      '.skills-group',
+      '.why-intro > *',
+      '.why-item',
+      '.process-intro > *',
+      '.process-step',
+      '.faq-intro > *',
+      '.faq-item',
+      '.contact-copy > *',
+      '.contact-availability',
+      '.enquiry-panel',
+      '.portfolio-footer',
+    ].join(', ')
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
+        const visible = entries.filter((entry) => entry.isIntersecting)
 
+        visible.forEach((entry, index) => {
           observer.unobserve(entry.target)
+
+          if (preference.matches) return
 
           const animation = entry.target.animate(
             [
-              { opacity: 0, translate: '0 24px' },
-              { opacity: 1, translate: '0 0' },
+              {
+                opacity: 0,
+                translate: '0 32px',
+                scale: '0.98',
+              },
+              {
+                opacity: 1,
+                translate: '0 0',
+                scale: '1',
+              },
             ],
             {
-              duration: 650,
+              duration: 800,
+              delay: Math.min(index * 75, 225),
               easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-              fill: 'none',
+              fill: 'backwards',
             }
           )
 
@@ -208,14 +223,29 @@ export function useScrollReveal(language) {
           animation.onfinish = () => animations.delete(animation)
         })
       },
-      { threshold: 0.08 }
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px',
+      }
     )
 
-    elements.forEach((element) => observer.observe(element))
+    document.querySelectorAll(selector).forEach((element) => {
+      observer.observe(element)
+    })
+
+    function stopMotion(event) {
+      if (!event.matches) return
+      observer.disconnect()
+      animations.forEach((animation) => animation.cancel())
+      animations.clear()
+    }
+
+    preference.addEventListener('change', stopMotion)
 
     return () => {
       observer.disconnect()
       animations.forEach((animation) => animation.cancel())
+      preference.removeEventListener('change', stopMotion)
     }
   }, [language])
 }

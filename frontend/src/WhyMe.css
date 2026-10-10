@@ -1,0 +1,321 @@
+.wm-section {
+  width: min(1280px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 80px 0 100px;
+  color: #f4f0e6;
+  scroll-margin-top: 110px;
+}
+
+.wm-section *,
+.wm-section *::before,
+.wm-section *::after {
+  box-sizing: border-box;
+}
+
+.wm-section .wm-heading {
+  position: static;
+  max-width: 850px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.wm-eyebrow {
+  margin: 0 0 22px;
+  color: #e7c66b;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+.wm-section .wm-heading h2 {
+  margin: 0;
+  color: #f4f0e6;
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+}
+
+.wm-section .wm-heading h2 span {
+  color: #e7c66b;
+}
+
+.wm-description {
+  max-width: 530px;
+  margin: 22px auto 0;
+  color: #bdb9ae;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.wm-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+}
+
+.wm-section .wm-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  overflow: hidden;
+  padding: 32px;
+  border: 1px solid #ffffff18;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 100% 0%, #e7c66b09, transparent 65%),
+    #20201d;
+  transition:
+    transform 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.wm-section .wm-featured {
+  border-color: #e7c66b;
+  background: linear-gradient(135deg, #f1d991, #d8b75d);
+}
+
+.wm-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.wm-label {
+  color: #c6b789;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 1.5px;
+}
+
+.wm-number {
+  color: #858174;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wm-section .wm-card h3 {
+  margin: 32px 0 12px;
+  color: #f4f0e6;
+  font-size: clamp(23px, 2.5vw, 34px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+
+.wm-section .wm-card-copy p {
+  max-width: 440px;
+  margin: 0;
+  color: #bdb9ae;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.wm-section .wm-featured h3 {
+  color: #211e16;
+}
+
+.wm-section .wm-featured .wm-label,
+.wm-section .wm-featured .wm-number,
+.wm-section .wm-featured .wm-card-copy p {
+  color: #51452a;
+}
+
+.wm-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 32px auto 0;
+  padding: 14px 2px;
+  border-bottom: 1px solid #e7c66b66;
+  color: #e7c66b;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.wm-cta svg {
+  flex-shrink: 0;
+  transition: transform 250ms ease;
+}
+
+.wm-cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.wm-cta:focus-visible {
+  outline: 2px solid #e7c66b;
+  outline-offset: 6px;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .wm-card:hover {
+    transform: translateY(-5px);
+    border-color: #e7c66b80;
+    box-shadow: 0 18px 36px #00000020;
+  }
+}
+
+@media (max-width: 700px) {
+  .wm-section {
+    width: calc(100% - 32px);
+    padding: 50px 0 65px;
+  }
+
+  .wm-section .wm-heading {
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .wm-description {
+    margin-left: 0;
+  }
+
+  .wm-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .wm-section .wm-card {
+    min-height: 220px;
+    padding: 25px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wm-section .wm-card,
+  .wm-cta svg {
+    transition: none;
+  }
+}
+/* WHY WORK WITH ME — interactive cards */
+
+#why-me .wm-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(231, 198, 107, 0.24);
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 450ms ease,
+    box-shadow 450ms ease;
+}
+
+/* Gold layer fades in smoothly */
+#why-me .wm-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    #f5e5b5 0%,
+    #e7c66b 55%,
+    #d6ad50 100%
+  );
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+/* Soft highlight moves across the card */
+#why-me .wm-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.3) 48%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 850ms ease;
+}
+
+#why-me .wm-card :is(h3, p, span, small, strong, a, svg) {
+  transition:
+    color 400ms ease,
+    background-color 400ms ease,
+    border-color 400ms ease;
+}
+
+/* Keyboard interaction */
+#why-me .wm-card:focus-within {
+  transform: translateY(-7px);
+  border-color: #e7c66b;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+#why-me .wm-card:focus-within::before {
+  opacity: 1;
+}
+
+#why-me .wm-card:focus-within::after {
+  transform: translateX(130%);
+}
+
+#why-me .wm-card:focus-within :is(h3, span, small, strong, a, svg) {
+  color: #292215;
+}
+
+#why-me .wm-card:focus-within p {
+  color: #40351f;
+}
+
+/* Mouse interaction */
+@media (hover: hover) and (pointer: fine) {
+  #why-me .wm-card:hover {
+    transform: translateY(-7px);
+    border-color: #e7c66b;
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.24),
+      0 0 28px rgba(231, 198, 107, 0.1);
+  }
+
+  #why-me .wm-card:hover::before {
+    opacity: 1;
+  }
+
+  #why-me .wm-card:hover::after {
+    transform: translateX(130%);
+  }
+
+  #why-me .wm-card:hover :is(h3, span, small, strong, a, svg) {
+    color: #292215;
+  }
+
+  #why-me .wm-card:hover p {
+    color: #40351f;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  #why-me .wm-card,
+  #why-me .wm-card::before,
+  #why-me .wm-card::after,
+  #why-me .wm-card :is(h3, p, span, small, strong, a, svg) {
+    transition: none;
+  }
+
+  #why-me .wm-card:hover,
+  #why-me .wm-card:focus-within {
+    transform: none;
+  }
+
+  #why-me .wm-card::after {
+    display: none;
+  }
+}

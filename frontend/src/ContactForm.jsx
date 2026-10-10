@@ -37,7 +37,7 @@ const timelines = [
 const copy = {
   en: {
     title: 'Tell me about your project',
-    intro: 'Share a few details so we can discuss the right scope.',
+    intro: 'Share your goals, requirements and a budget range to get started.',
     name: 'Full name',
     email: 'Email address',
     phone: 'Phone / WhatsApp',
@@ -49,22 +49,28 @@ const copy = {
     timeline: 'Preferred timeline',
     details: 'Project details',
     placeholder:
-      'What do you want to build or fix? Include your current setup, main goals and any specific requirements.',
+      'What would you like to build or fix? Share your current setup, goals and requirements.',
     optional: 'optional',
     choose: 'Select an option',
-    consent: 'You may contact me about this project using the details I provide.',
+    consent:
+      'You may contact me about this project using the details I provide.',
     submit: 'Continue on WhatsApp',
     note:
-      'This opens WhatsApp with your project details. Review the message and press Send there. Nothing is submitted to this website.',
+      'Opens WhatsApp with your details. Review the message and press Send there. This website does not save your enquiry.',
     status:
-      'Your WhatsApp message is ready. If WhatsApp did not open, use the link below.',
+      'Your message is ready. If WhatsApp did not open, use the link below.',
     open: 'Open prepared message',
     required: 'Fields marked * are required.',
     heading: 'New portfolio project enquiry',
+    missing: 'Please complete this field.',
+    invalidPhone:
+      'Enter a valid phone number with 7–15 digits. You can include +, spaces, brackets and hyphens.',
   },
+
   es: {
     title: 'Cuéntame sobre tu proyecto',
-    intro: 'Comparte algunos detalles para definir el alcance adecuado.',
+    intro:
+      'Comparte tus objetivos, requisitos y presupuesto aproximado para empezar.',
     name: 'Nombre completo',
     email: 'Correo electrónico',
     phone: 'Teléfono / WhatsApp',
@@ -76,25 +82,90 @@ const copy = {
     timeline: 'Plazo preferido',
     details: 'Detalles del proyecto',
     placeholder:
-      '¿Qué quieres crear o corregir? Describe tu configuración actual, objetivos y requisitos específicos.',
+      '¿Qué quieres crear o corregir? Comparte tu configuración actual, objetivos y requisitos.',
     optional: 'opcional',
     choose: 'Selecciona una opción',
-    consent: 'Puedes contactarme sobre este proyecto con los datos facilitados.',
+    consent:
+      'Puedes contactarme sobre este proyecto con los datos facilitados.',
     submit: 'Continuar en WhatsApp',
     note:
-      'Se abrirá WhatsApp con los detalles del proyecto. Revisa el mensaje y pulsa Enviar allí. No se envía ningún formulario a este sitio web.',
+      'Se abrirá WhatsApp con tus datos. Revisa el mensaje y pulsa Enviar allí. Este sitio no guarda tu consulta.',
     status:
       'Tu mensaje está listo. Si WhatsApp no se abrió, utiliza el enlace de abajo.',
     open: 'Abrir mensaje preparado',
     required: 'Los campos con * son obligatorios.',
     heading: 'Nueva consulta sobre un proyecto',
+    missing: 'Completa este campo.',
+    invalidPhone:
+      'Introduce un teléfono válido de 7 a 15 dígitos. Puedes incluir +, espacios, paréntesis y guiones.',
   },
+}
+
+function moveFormGlow(event) {
+  if (
+    event.pointerType !== 'mouse' ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    return
+  }
+
+  const element = event.currentTarget
+  const rect = element.getBoundingClientRect()
+
+  if (!rect.width || !rect.height) return
+
+  const x = Math.max(
+    0,
+    Math.min(100, ((event.clientX - rect.left) / rect.width) * 100)
+  )
+
+  const y = Math.max(
+    0,
+    Math.min(100, ((event.clientY - rect.top) / rect.height) * 100)
+  )
+
+  element.style.setProperty('--form-glow-x', `${x}%`)
+  element.style.setProperty('--form-glow-y', `${y}%`)
+}
+
+function Field({ label, wide = false, children }) {
+  return (
+    <label className={`enquiry-field${wide ? ' enquiry-wide' : ''}`}>
+      <span>{label}</span>
+
+      <span
+        className="enquiry-control"
+        onPointerMove={moveFormGlow}
+      >
+        {children}
+      </span>
+    </label>
+  )
+}
+
+function SelectField({ name, label, options, t, labelIndex, wide = false }) {
+  return (
+    <Field label={`${label} *`} wide={wide}>
+      <select name={name} defaultValue="" required>
+        <option value="" disabled>
+          {t.choose}
+        </option>
+
+        {options.map(option => (
+          <option key={option[0]} value={option[0]}>
+            {option[labelIndex]}
+          </option>
+        ))}
+      </select>
+    </Field>
+  )
 }
 
 export default function ContactForm({ language = 'en' }) {
   const locale = language === 'es' ? 'es' : 'en'
   const t = copy[locale]
   const labelIndex = locale === 'es' ? 2 : 1
+
   const [messageLink, setMessageLink] = useState('')
 
   function handleSubmit(event) {
@@ -102,20 +173,31 @@ export default function ContactForm({ language = 'en' }) {
 
     const form = event.currentTarget
     const data = new FormData(form)
-    const get = (name) => String(data.get(name) || '').trim()
+    const get = name => String(data.get(name) || '').trim()
 
-    for (const field of ['name', 'details']) {
+    for (const field of ['name', 'phone', 'details']) {
       const input = form.elements.namedItem(field)
+      input.setCustomValidity('')
 
       if (!get(field)) {
-        input.setCustomValidity(
-          locale === 'es'
-            ? 'Completa este campo.'
-            : 'Please complete this field.'
-        )
+        input.setCustomValidity(t.missing)
         input.reportValidity()
         return
       }
+    }
+
+    const phone = get('phone')
+    const digitCount = phone.replace(/\D/g, '').length
+
+    if (
+      !/^\+?[\d\s().-]+$/.test(phone) ||
+      digitCount < 7 ||
+      digitCount > 15
+    ) {
+      const input = form.elements.namedItem('phone')
+      input.setCustomValidity(t.invalidPhone)
+      input.reportValidity()
+      return
     }
 
     const selectedLabel = (options, key) =>
@@ -126,17 +208,17 @@ export default function ContactForm({ language = 'en' }) {
       '',
       `${t.name}: ${get('name')}`,
       `${t.email}: ${get('email')}`,
-      get('phone') && `${t.phone}: ${get('phone')}`,
-      get('company') && `${t.company}: ${get('company')}`,
-      get('website') && `${t.website}: ${get('website')}`,
-      get('country') && `${t.country}: ${get('country')}`,
+      `${t.phone}: ${phone}`,
+      ...(get('company') ? [`${t.company}: ${get('company')}`] : []),
+      ...(get('website') ? [`${t.website}: ${get('website')}`] : []),
+      ...(get('country') ? [`${t.country}: ${get('country')}`] : []),
       `${t.service}: ${selectedLabel(services, 'service')}`,
       `${t.budget}: ${selectedLabel(budgets, 'budget')}`,
       `${t.timeline}: ${selectedLabel(timelines, 'timeline')}`,
       '',
       `${t.details}:`,
       get('details'),
-    ].filter((line) => line !== false)
+    ]
 
     const link = new URL(profile.whatsapp)
     link.searchParams.set('text', lines.join('\n'))
@@ -147,11 +229,17 @@ export default function ContactForm({ language = 'en' }) {
 
   function clearFeedback(event) {
     event.target.setCustomValidity?.('')
-    if (messageLink) setMessageLink('')
+
+    if (messageLink) {
+      setMessageLink('')
+    }
   }
 
   return (
-    <div className="enquiry-panel">
+    <div
+      className="enquiry-panel"
+      onPointerMove={moveFormGlow}
+    >
       <div className="enquiry-heading">
         <h3>{t.title}</h3>
         <p>{t.intro}</p>
@@ -162,20 +250,19 @@ export default function ContactForm({ language = 'en' }) {
         className="enquiry-form"
         onSubmit={handleSubmit}
         onInput={clearFeedback}
+        onChange={clearFeedback}
       >
         <div className="enquiry-grid">
-          <label className="enquiry-field">
-            <span>{t.name} *</span>
+          <Field label={`${t.name} *`}>
             <input
               name="name"
               autoComplete="name"
               required
               maxLength={100}
             />
-          </label>
+          </Field>
 
-          <label className="enquiry-field">
-            <span>{t.email} *</span>
+          <Field label={`${t.email} *`}>
             <input
               name="email"
               type="email"
@@ -183,30 +270,28 @@ export default function ContactForm({ language = 'en' }) {
               required
               maxLength={254}
             />
-          </label>
+          </Field>
 
-          <label className="enquiry-field">
-            <span>{t.phone} ({t.optional})</span>
+          <Field label={`${t.phone} *`}>
             <input
               name="phone"
               type="tel"
               autoComplete="tel"
+              required
               maxLength={40}
-              placeholder="+1 / +44 / +92 ..."
+              placeholder="+92 300 1234567"
             />
-          </label>
+          </Field>
 
-          <label className="enquiry-field">
-            <span>{t.company} ({t.optional})</span>
+          <Field label={`${t.company} (${t.optional})`}>
             <input
               name="company"
               autoComplete="organization"
               maxLength={120}
             />
-          </label>
+          </Field>
 
-          <label className="enquiry-field">
-            <span>{t.website} ({t.optional})</span>
+          <Field label={`${t.website} (${t.optional})`}>
             <input
               name="website"
               type="url"
@@ -214,67 +299,64 @@ export default function ContactForm({ language = 'en' }) {
               placeholder="https://"
               maxLength={300}
             />
-          </label>
+          </Field>
 
-          <label className="enquiry-field">
-            <span>{t.country} ({t.optional})</span>
-            <input name="country" maxLength={100} />
-          </label>
+          <Field label={`${t.country} (${t.optional})`}>
+            <input
+              name="country"
+              maxLength={100}
+            />
+          </Field>
 
-          <label className="enquiry-field enquiry-wide">
-            <span>{t.service} *</span>
-            <select name="service" defaultValue="" required>
-              <option value="" disabled>{t.choose}</option>
-              {services.map((option) => (
-                <option key={option[0]} value={option[0]}>
-                  {option[labelIndex]}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SelectField
+            name="service"
+            label={t.service}
+            options={services}
+            t={t}
+            labelIndex={labelIndex}
+            wide
+          />
 
-          <label className="enquiry-field">
-            <span>{t.budget} *</span>
-            <select name="budget" defaultValue="" required>
-              <option value="" disabled>{t.choose}</option>
-              {budgets.map((option) => (
-                <option key={option[0]} value={option[0]}>
-                  {option[labelIndex]}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SelectField
+            name="budget"
+            label={t.budget}
+            options={budgets}
+            t={t}
+            labelIndex={labelIndex}
+          />
 
-          <label className="enquiry-field">
-            <span>{t.timeline} *</span>
-            <select name="timeline" defaultValue="" required>
-              <option value="" disabled>{t.choose}</option>
-              {timelines.map((option) => (
-                <option key={option[0]} value={option[0]}>
-                  {option[labelIndex]}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SelectField
+            name="timeline"
+            label={t.timeline}
+            options={timelines}
+            t={t}
+            labelIndex={labelIndex}
+          />
 
-          <label className="enquiry-field enquiry-wide">
-            <span>{t.details} *</span>
+          <Field label={`${t.details} *`} wide>
             <textarea
               name="details"
-              rows={5}
+              rows={3}
               required
               maxLength={2000}
               placeholder={t.placeholder}
             />
-          </label>
+          </Field>
         </div>
 
         <label className="enquiry-consent">
-          <input type="checkbox" name="consent" required />
+          <input
+            type="checkbox"
+            name="consent"
+            required
+          />
           <span>{t.consent}</span>
         </label>
 
-        <p className="enquiry-note" id="enquiry-submit-note">
+        <p
+          className="enquiry-note"
+          id="enquiry-submit-note"
+        >
           {t.note}
         </p>
 
@@ -290,6 +372,7 @@ export default function ContactForm({ language = 'en' }) {
         {messageLink && (
           <div className="enquiry-feedback">
             <p role="status">{t.status}</p>
+
             <a
               href={messageLink}
               target="_blank"

@@ -1,135 +1,178 @@
-import { Search, Layers3, CheckCircle2, ArrowUpRight } from 'lucide-react'
-import { profile } from './content'
+import { useEffect, useRef } from 'react'
+import {
+  Search,
+  Layers3,
+  CircleCheck,
+  ArrowUpRight,
+} from 'lucide-react'
 import './Process.css'
 
-const copy = {
-  en: {
-    eyebrow: 'HOW I WORK',
-    title: 'Clear steps.',
-    highlight: 'From idea to handover.',
-    description:
-      'We agree on the scope first, then build, review and test the setup around your business.',
-    cta: 'Discuss your project',
-    steps: [
-      {
-        title: 'Understand & plan',
-        description:
-          'We review your goals, current setup and the gaps you want to fix. Then we agree on deliverables, access requirements and a realistic timeline.',
-        detail: 'A clear scope before the build.',
-      },
-      {
-        title: 'Build & connect',
-        description:
-          'I build the agreed pages, CRM setup or automations and connect the relevant forms, calendars and tools. You review progress at agreed checkpoints.',
-        detail: 'Your feedback during the build.',
-      },
-      {
-        title: 'Test & refine',
-        description:
-          'I test the relevant customer journeys, check workflow conditions and review layouts across screen sizes. We resolve issues and review the agreed scope together.',
-        detail: 'Checks based on your project.',
-      },
-      {
-        title: 'Launch & hand over',
-        description:
-          'After your approval, we launch the agreed setup. I explain how to use it and provide the handover materials included in the scope. Ongoing support can be arranged separately.',
-        detail: 'Know what happens after launch.',
-      },
-    ],
+const steps = [
+  {
+    icon: Search,
+    en: {
+      title: 'Understand & plan',
+      text: 'We review your goals, current setup and the gaps you want to fix. Then we agree on deliverables, access requirements and a realistic timeline.',
+      note: 'A clear scope before the build.',
+    },
+    es: {
+      title: 'Entender y planificar',
+      text: 'Revisamos tus objetivos, la configuración actual y lo que necesitas mejorar. Después acordamos los entregables, los accesos y un plazo realista.',
+      note: 'Un alcance claro antes de empezar.',
+    },
   },
-  es: {
-    eyebrow: 'CÓMO TRABAJO',
-    title: 'Pasos claros.',
-    highlight: 'De la idea a la entrega.',
-    description:
-      'Primero acordamos el alcance. Después construimos, revisamos y probamos la configuración según las necesidades de tu negocio.',
-    cta: 'Hablemos de tu proyecto',
-    steps: [
-      {
-        title: 'Entender y planificar',
-        description:
-          'Revisamos tus objetivos, la configuración actual y los problemas que quieres resolver. Acordamos los entregables, los accesos necesarios y un plazo realista.',
-        detail: 'Un alcance claro antes de empezar.',
-      },
-      {
-        title: 'Construir y conectar',
-        description:
-          'Creo las páginas, el CRM o las automatizaciones acordadas y conecto los formularios, calendarios y herramientas pertinentes. Revisas el progreso en los puntos acordados.',
-        detail: 'Tu opinión durante el desarrollo.',
-      },
-      {
-        title: 'Probar y ajustar',
-        description:
-          'Pruebo los recorridos del cliente, compruebo las condiciones de los flujos y reviso los diseños en diferentes tamaños de pantalla. Resolvemos los problemas y revisamos el alcance juntos.',
-        detail: 'Pruebas adaptadas a tu proyecto.',
-      },
-      {
-        title: 'Publicar y entregar',
-        description:
-          'Tras tu aprobación, ponemos en marcha la configuración. Explico cómo utilizarla y proporciono los materiales de entrega incluidos en el alcance. El soporte continuo se puede acordar por separado.',
-        detail: 'Claridad después del lanzamiento.',
-      },
-    ],
+  {
+    icon: Layers3,
+    en: {
+      title: 'Build & connect',
+      text: 'I build the agreed pages, CRM setup or automations and connect the relevant forms, calendars and tools. You review progress at agreed checkpoints.',
+      note: 'Your feedback during the build.',
+    },
+    es: {
+      title: 'Crear y conectar',
+      text: 'Creo las páginas, el CRM o las automatizaciones acordadas y conecto los formularios, calendarios y herramientas. Revisas el progreso en los puntos acordados.',
+      note: 'Tu opinión durante el desarrollo.',
+    },
   },
-}
-
-const icons = [Search, Layers3, CheckCircle2, ArrowUpRight]
+  {
+    icon: CircleCheck,
+    en: {
+      title: 'Test & refine',
+      text: 'I test the relevant customer journeys, check workflow conditions and review layouts across screen sizes. We resolve issues and review the agreed scope together.',
+      note: 'Checks based on your project.',
+    },
+    es: {
+      title: 'Probar y mejorar',
+      text: 'Pruebo los recorridos del cliente, reviso las condiciones de automatización y compruebo el diseño en distintos tamaños de pantalla. Resolvemos los problemas y revisamos el alcance.',
+      note: 'Pruebas adaptadas a tu proyecto.',
+    },
+  },
+  {
+    icon: ArrowUpRight,
+    en: {
+      title: 'Handover & support',
+      text: 'I walk you through the completed setup, explain how to manage it and share the agreed handover materials. We clarify any remaining questions and next steps.',
+      note: 'A clear handover for your team.',
+    },
+    es: {
+      title: 'Entrega y soporte',
+      text: 'Te explico la configuración terminada, cómo gestionarla y los materiales de entrega acordados. Aclaramos las dudas y los siguientes pasos.',
+      note: 'Una entrega clara para tu equipo.',
+    },
+  },
+]
 
 export default function Process({ language = 'en' }) {
-  const t = copy[language] || copy.en
+  const sectionRef = useRef(null)
+  const locale = language === 'es' ? 'es' : 'en'
+  const es = locale === 'es'
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const items = [...section.querySelectorAll('.pr-step')]
+    const motion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    )
+    let observer
+
+    function setup() {
+      observer?.disconnect()
+      items.forEach(item => {
+        item.classList.remove('pr-reveal', 'pr-visible')
+      })
+
+      if (motion.matches || !('IntersectionObserver' in window)) {
+        return
+      }
+
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle(
+            'pr-visible',
+            entry.isIntersecting
+          )
+        })
+      }, { threshold: 0 })
+
+      items.forEach(item => {
+        item.classList.add('pr-reveal')
+        observer.observe(item)
+      })
+    }
+
+    setup()
+    motion.addEventListener('change', setup)
+
+    return () => {
+      observer?.disconnect()
+      motion.removeEventListener('change', setup)
+      items.forEach(item => {
+        item.classList.remove('pr-reveal', 'pr-visible')
+      })
+    }
+  }, [])
 
   return (
     <section
-      className="process-section"
       id="process"
-      aria-labelledby="process-title"
+      className="pr-section"
+      ref={sectionRef}
+      aria-labelledby="pr-title"
     >
-      <div className="process-intro">
-        <p className="eyebrow">
-          <span className="eyebrow-line" />
-          {t.eyebrow}
-        </p>
+      <div className="pr-layout">
+        <header className="pr-intro">
+          <p className="pr-eyebrow">
+            {es ? 'CÓMO TRABAJO' : 'HOW I WORK'}
+          </p>
 
-        <h2 id="process-title">
-          {t.title}
-          <span className="gradient-text">{t.highlight}</span>
-        </h2>
+          <h2 id="pr-title">
+            {es ? 'PASOS CLAROS.' : 'CLEAR STEPS.'}
+            <span>
+              {es ? 'DE LA IDEA' : 'FROM IDEA'}
+            </span>
+            <mark>
+              {es ? 'A LA ENTREGA.' : 'TO HANDOVER.'}
+            </mark>
+          </h2>
 
-        <p className="process-description">{t.description}</p>
+          <p className="pr-summary">
+            {es
+              ? 'Primero acordamos el alcance. Después creamos, revisamos y probamos la solución para tu negocio.'
+              : 'We agree on the scope first, then build, review and test the setup around your business.'}
+          </p>
 
-        <a
-          className="primary-button"
-          href={profile.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t.cta}
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </a>
-      </div>
+          <a href="#contact" className="pr-cta">
+            {es ? 'Hablemos de tu proyecto' : 'Discuss your project'}
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </header>
 
-      <ol className="process-timeline">
-        {t.steps.map((step, index) => {
-          const Icon = icons[index]
+        <ol className="pr-timeline">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            const text = step[locale]
 
-          return (
-            <li className="process-step" key={index}>
-              <span className="process-marker" aria-hidden="true">
-                <Icon size={22} strokeWidth={1.5} />
-              </span>
-
-              <div className="process-step-content">
-                <span className="process-number" aria-hidden="true">
-                  0{index + 1}
+            return (
+              <li className="pr-step" key={index}>
+                <span className="pr-icon" aria-hidden="true">
+                  <Icon size={23} strokeWidth={1.6} />
                 </span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-                <span className="process-detail">{step.detail}</span>
-              </div>
-            </li>
-          )
-        })}
-      </ol>
+
+                <article className="pr-card">
+                  <span className="pr-number">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <h3>{text.title}</h3>
+                  <p>{text.text}</p>
+                  <small>{text.note}</small>
+                </article>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
     </section>
   )
 }

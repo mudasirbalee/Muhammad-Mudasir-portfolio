@@ -1,0 +1,134 @@
+#services .service-card h3 { color: var(--paper-text); }
+#services .service-card > p { color: var(--card-text); }
+#services .service-number { color: #b7b8aa; }
+#services .service-icon { background: #ffdf0015; color: var(--accent); border-color: #ffdf0040; }
+#services .service-tags li { background: #ffffff08; color: var(--card-text); border-color: #ffffff26; }
+#services .service-card::after { background: var(--accent); }
+#services .service-border-glow { background: radial-gradient(ellipse 75% 95% at var(--service-glow-x) var(--service-glow-y), #fffbd2 0%, #ffdf00 24%, #ffdf00a6 45%, #ffdf0026 65%, transparent 82%); }
+.directory-trigger, .directory-panel > a { color: var(--ink); }
+.directory-number, .directory-panel > p, .directory-panel li { color: var(--muted); }
+.directory-toggle { color: var(--ink); border-color: var(--line); }
+.is-open .directory-toggle { color: var(--ink); background: var(--accent); border-color: var(--accent); }
+.directory-item.is-open { background: #ffdf0018; }
+.directory-panel li::before { background: #887700; }
+#projects.pg-section, #reviews.rv-section, .wm-section { color: var(--ink); }
+#projects :is(.pg-filters button, .pg-toolbar button), #reviews .rv-mobile-controls button {
+  background: var(--page); color: var(--ink); border-color: #aaa99b;
+}
+#projects .pg-filters button:is(:hover, [aria-pressed='true']) { background: var(--accent); color: var(--ink); border-color: #dfc300; }
+#projects .pg-card, #reviews .rv-card { background: var(--ink); color: var(--paper-text); border-color: var(--card-line); }
+#projects .pg-card:hover { border-color: #b7a100; }
+#projects .pg-browser, #projects .pg-card-footer small, #reviews .rv-sample,
+#reviews .rv-person small { color: #b7b8aa; }
+#projects .pg-dots i { background: #878876; }
+#projects .pg-card-footer strong, #reviews .rv-card h3, #reviews .rv-person strong { color: var(--paper-text); }
+#projects .pg-card-footer > svg, #reviews .rv-stars { color: var(--accent); }
+#projects .pg-preview { background: #11120f; }
+#projects .pg-preview-hint { background: #191a18ed; border-color: #ffdf004d; color: var(--paper-text); }
+#projects .pg-video-art { background: radial-gradient(circle, #ffdf001a, transparent 70%), var(--ink); color: var(--accent); }
+#projects .pg-video-line { background: #887700; }
+#projects .pg-play { background: #ffdf001a; border-color: #ffdf0066; }
+#projects .pg-file-error, .pg-modal .pg-file-error { color: var(--card-text); }
+#projects .pg-empty { color: var(--muted); border-color: var(--line); }
+#reviews .rv-card blockquote { color: var(--card-text); }
+#reviews .rv-avatar { background: #ffdf0015; border-color: #ffdf0040; color: var(--accent); }
+.pg-modal, .pg-modal .pg-modal-header { background: var(--ink); color: var(--paper-text); border-color: #696a59; }
+.pg-modal .pg-modal-header p { color: var(--card-text); }
+.pg-modal .pg-modal-actions :is(a, button) { background: #292a25; color: var(--paper-text); border-color: #696a59; }
+.pg-modal .pg-modal-body { background: #11120f; }
+/* Why me: retain the animated hover layer */
+#why-me .wm-card { background: var(--ink); border-color: var(--card-line); }
+#why-me .wm-card h3 { color: var(--paper-text); }
+#why-me .wm-card-copy p { color: var(--card-text); }
+#why-me .wm-label, #why-me .wm-cta { color: var(--accent); }
+#why-me .wm-number { color: #b7b8aa; }
+#why-me .wm-featured, #why-me .wm-card::before { background: var(--accent); }
+#why-me .wm-featured :is(h3, .wm-label, .wm-number, .wm-card-copy p, .wm-cta),
+#why-me .wm-card:focus-within :is(h3, span, small, strong, a, svg, p) { color: var(--ink); }
+#why-me .wm-card:focus-within { border-color: #b7a100; }
+/* Resume/process retain all timeline and reveal declarations */
+#experience .rs-company, #process :is(.pr-number, .pr-card small) { color: var(--accent); }
+#experience .rs-card, #process .pr-card { background: var(--ink); }
+/* FAQ on a light surface */
+.faq-description, .faq-contact p, .faq-answer p, .faq-number { color: var(--muted); }
+.faq-item summary, .faq-item summary > svg, .faq-contact a { color: var(--ink); }
+.faq-list, .faq-item, .faq-contact { border-color: var(--line); }
+.faq-item[open] { background: #ffdf001c; }
+/* Contact and inputs remain dark for consistent card contrast */
+.contact-panel, .enquiry-panel { background: var(--ink); border-color: var(--card-line); color: var(--paper-text); }
+.portfolio .contact-copy h2 { color: var(--paper-text); }
+.contact-description, .contact-markets, .contact-time-note, .contact-socials > span,
+.enquiry-heading p, .enquiry-heading small, .enquiry-consent, .enquiry-note { color: var(--card-text); }
+.contact-status, .contact-email-address, .contact-socials a { color: var(--accent); }
+.contact-days, .enquiry-heading h3, .enquiry-field > span:first-child { color: var(--paper-text); }
+.contact-status > span { background: var(--accent); }
+.contact-email-button { color: var(--paper-text); border-color: #696a59; }
+.contact-email-button:hover { background: #ffdf001a; }
+.contact-socials a:hover, .contact-email-address:hover { color: #fff7ba; }
+.enquiry-field :is(input, select, textarea), .enquiry-field option { background: #11120f; color: var(--paper-text); border-color: #696a59; color-scheme: dark; }
+.enquiry-field ::placeholder { color: #a8a99d; }
+.enquiry-field :is(input, select, textarea):focus { border-color: var(--accent); box-shadow: 0 0 0 3px #ffdf0020; }
+.enquiry-consent input { accent-color: var(--accent); }
+.enquiry-panel::after, .enquiry-control::after { background: radial-gradient(ellipse at var(--form-glow-x, 50%) var(--form-glow-y, 50%), #fffbd2 0%, #ffdf00 28%, transparent 72%); }
+.enquiry-feedback { background: #ffdf0012; border-color: #8e7d00; color: var(--paper-text); }
+.enquiry-feedback a { color: var(--accent); }
+.portfolio-footer { border-color: var(--line); }
+.footer-brand, .footer-brand span, .footer-top { color: var(--ink); }
+.portfolio-footer p { color: var(--muted); }
+/* Back to top */
+.btt-button { background: var(--ink); color: var(--accent); box-shadow: 0 8px 28px #191a1828; }
+.btt-center { background: #ffdf000d; border-color: #ffdf0033; }
+.btt-ring-track { stroke: #ffdf0038; }
+.btt-ring-progress { stroke: var(--accent); }
+.btt-tooltip { background: var(--ink); color: var(--paper-text); border-color: #696a59; }
+.btt-button:focus-visible { outline-color: #887700; }
+@media (hover: hover) and (pointer: fine) {
+  #services .service-card:hover { background: var(--accent); border-color: #dfc300; }
+  #services .service-card:hover :is(h3, p, .service-number) { color: var(--ink); -webkit-text-fill-color: var(--ink); }
+  #services .service-card:hover .service-icon { background: var(--ink); color: var(--accent); border-color: var(--ink); }
+  #services .service-card:hover .service-tags li { background: #ffffff33; color: var(--ink); border-color: #191a1840; }
+  #why-me .wm-card:hover :is(h3, span, small, strong, a, svg, p) { color: var(--ink); }
+  #why-me .wm-card:hover { border-color: #b7a100; }
+}
+/* Match the specificity of the original hero and Why Me headings. */
+.portfolio .hero-v2 h1, .wm-section .wm-heading h2 {
+  color: var(--ink);
+  font-family: var(--heading-font);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* Keep heading highlights attached to their text instead of filling the row. */
+.portfolio .gradient-text,
+.portfolio .hero-v2 h1 > span,
+#projects .pg-heading h2 > span,
+#reviews .rv-heading h2 span,
+.wm-section .wm-heading h2 span {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.04em 0.14em 0.08em;
+  box-sizing: border-box;
+}
+.portfolio .hero-v2 h1 {
+  font-size: clamp(36px, 3.7vw, 56px);
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+.portfolio .hero-v2 h1 > span {
+  text-wrap: pretty;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+#projects .pg-heading h2,
+#reviews .rv-heading h2 {
+  font-size: clamp(32px, 3.3vw, 48px);
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+@media (max-width: 600px) {
+  .portfolio .hero-v2 h1 { font-size: clamp(32px, 8.8vw, 44px); }
+  #projects .pg-heading h2,
+  #reviews .rv-heading h2 { font-size: clamp(29px, 7.8vw, 38px); }
+}

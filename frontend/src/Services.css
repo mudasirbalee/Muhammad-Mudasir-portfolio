@@ -259,3 +259,89 @@
     gap: 10px;
   }
 }
+/* Services — smooth hover */
+
+#services .service-card {
+  background-color: #24211b;
+  background-image: none;
+  transition:
+    background-color 450ms ease,
+    border-color 450ms ease,
+    box-shadow 450ms ease,
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#services .service-card :is(h3, p, .service-number) {
+  transition: color 400ms ease;
+}
+
+#services .service-icon {
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 400ms ease,
+    background-color 400ms ease,
+    border-color 400ms ease;
+}
+
+#services .service-tags li {
+  transition:
+    color 400ms ease,
+    background-color 400ms ease,
+    border-color 400ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #services .service-card:hover {
+    background-color: #ead18e;
+    border-color: #f3dea9;
+    transform: translateY(-7px);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.25),
+      0 0 24px rgba(231, 198, 107, 0.09);
+  }
+
+  #services .service-card:hover h3 {
+    color: #241d12;
+    -webkit-text-fill-color: #241d12;
+  }
+
+  #services .service-card:hover p {
+    color: #433720;
+  }
+
+  #services .service-card:hover .service-number {
+    color: #68532b;
+  }
+
+  #services .service-card:hover .service-icon {
+    color: #f5dfa5;
+    background-color: #302718;
+    background-image: none;
+    border-color: #534225;
+    transform: translateY(-3px) rotate(-6deg);
+  }
+
+  #services .service-card:hover .service-tags li {
+    color: #382c16;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-color: rgba(69, 51, 20, 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #services .service-card,
+  #services .service-card :is(
+    h3,
+    p,
+    .service-number,
+    .service-icon,
+    .service-tags li
+  ) {
+    transition: none;
+  }
+
+  #services .service-card:hover,
+  #services .service-card:hover .service-icon {
+    transform: none;
+  }
+}
