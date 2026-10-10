@@ -234,7 +234,40 @@ export default function ContactForm({ language = 'en' }) {
       setMessageLink('')
     }
   }
+  if (messageLink) {
+    return (
+      <div className="enquiry-panel enquiry-thanks" role="status">
+        <span className="enquiry-thanks-icon" aria-hidden="true">✓</span>
 
+        <h3>
+          {locale === 'es' ? '¡Gracias!' : 'Thank you!'}
+        </h3>
+
+        <p>
+          {locale === 'es'
+            ? 'Tu mensaje está preparado. Pulsa Enviar en WhatsApp para completar tu consulta.'
+            : 'Your project message is ready. Press Send in WhatsApp to complete your enquiry.'}
+        </p>
+
+        <a
+          className="primary-button"
+          href={messageLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t.open}
+        </a>
+
+        <button
+          type="button"
+          className="enquiry-thanks-back"
+          onClick={() => setMessageLink('')}
+        >
+          {locale === 'es' ? 'Nueva consulta' : 'Start a new enquiry'}
+        </button>
+      </div>
+    )
+  }
   return (
     <div
       className="enquiry-panel"
