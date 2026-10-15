@@ -294,3 +294,235 @@
     padding: 20px 15px;
   }
 }
+/* Equal-height, aligned contact buttons */
+#contact .contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+#contact .contact-buttons > a {
+  display: inline-flex;
+  flex: 1 1 180px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  position: relative;
+  top: auto;
+  margin: 0;
+  min-height: 50px;
+  padding: 13px 18px;
+
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+}
+
+#contact .contact-buttons > a svg {
+  flex-shrink: 0;
+}
+
+#contact .contact-email-button {
+  border: 1px solid #c8a76a70;
+  background: #e7c66b08;
+  color: #f0dfbd;
+}
+
+#contact .contact-email-address {
+  margin-top: 16px;
+  color: #d8cbb4;
+  line-height: 1.7;
+}
+
+/* Social links */
+#contact .contact-socials {
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+#contact .contact-socials > span {
+  color: #cbb995;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#contact .contact-social-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#contact .contact-social-links > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  position: relative;
+  min-width: 0;
+  min-height: 94px;
+  padding: 15px 8px;
+
+  border: 1px solid #b9965745;
+  border-radius: 12px;
+  background:
+    radial-gradient(at top right, #e7c66b10, transparent 75%),
+    #211e19;
+  color: #f0dfbd;
+  text-decoration: none;
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+#contact .social-brand-icon,
+.portfolio-footer .social-brand-icon {
+  display: grid;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+}
+
+#contact .social-brand-icon img,
+.portfolio-footer .social-brand-icon img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+
+  /* Monochrome brand marks to match the gold theme. */
+  filter:
+    invert(88%)
+    sepia(25%)
+    saturate(700%)
+    hue-rotate(340deg)
+    brightness(100%)
+    contrast(88%);
+}
+
+#contact .social-brand-name {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+#contact .social-link-arrow {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  color: #c5aa74;
+  width: 13px;
+  height: 13px;
+}
+
+/* Footer alignment */
+.portfolio-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.portfolio-footer > p {
+  flex: 1 1 250px;
+  text-align: center;
+  color: #c6bbab;
+}
+
+.portfolio-footer .footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-footer .footer-social-links > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid #b9965740;
+  border-radius: 9px;
+  background: #e7c66b06;
+  color: #efdab3;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.portfolio-footer .social-brand-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) {
+  #contact .contact-social-links > a:hover,
+  .portfolio-footer .footer-social-links > a:hover {
+    border-color: #dfbd7e;
+    background: #e7c66b14;
+  }
+
+  #contact .contact-email-button:hover {
+    background: #e7c66b16;
+  }
+}
+
+@media (max-width: 700px) {
+  .portfolio-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .portfolio-footer > p {
+    flex: initial;
+  }
+
+  .portfolio-footer .footer-social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 540px) {
+  #contact .contact-buttons {
+    flex-direction: column;
+  }
+
+  #contact .contact-buttons > a {
+    flex: initial;
+    width: 100%;
+  }
+
+  #contact .contact-social-links {
+    gap: 7px;
+  }
+
+  #contact .social-brand-name {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #contact .contact-social-links > a,
+  .portfolio-footer .footer-social-links > a {
+    transition: none;
+  }
+}

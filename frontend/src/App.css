@@ -3026,3 +3026,109 @@ html {
 #reviews .rv-mobile-controls {
   display: none;
 }
+#about .about-credential {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(231, 198, 107, 0.1);
+  color: #efd28b;
+  -webkit-text-fill-color: #efd28b;
+  font-weight: 700;
+  line-height: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+#about .about-paragraph {
+  margin: 0 0 18px;
+  line-height: 1.85;
+}
+
+#about .about-approach {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-left: 2px solid #dfbd7e;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(231, 198, 107, 0.08),
+    transparent
+  );
+}
+
+#about .about-approach > strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #efd28b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#about .about-approach > p {
+  margin: 0;
+  color: #d8d0c1;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#about .about-actions {
+  margin-top: 24px;
+}
+/* Upwork and Fiverr credentials */
+#about .about-credential {
+  display: inline;
+  padding: 4px 9px;
+  border: 1px solid #f5dda5;
+  border-radius: 7px;
+
+  background: linear-gradient(
+    120deg,
+    #f8e5b8 0%,
+    #e8c777 55%,
+    #dbb765 100%
+  );
+
+  color: #211a0e;
+  -webkit-text-fill-color: #211a0e;
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: inherit;
+
+  box-shadow:
+    0 2px 8px #00000025,
+    inset 0 1px 0 #ffffff60;
+
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Clear, readable About content */
+#about .about-copy .about-paragraph {
+  color: #e0d9cc;
+  -webkit-text-fill-color: #e0d9cc;
+  font-size: 15px;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+/* Keep badge text dark inside the paragraph */
+#about .about-copy .about-paragraph .about-credential {
+  color: #211a0e;
+  -webkit-text-fill-color: #211a0e;
+}
+
+#about .about-approach > p {
+  color: #e0d9cc;
+}
+
+@media (max-width: 600px) {
+  #about .about-copy .about-paragraph {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  #about .about-credential {
+    padding: 3px 6px;
+  }
+}

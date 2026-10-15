@@ -1,9 +1,8 @@
+import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { HeroSpecialties } from './PortfolioMotion'
-import { profile } from './content'
 import HeroVisual from './HeroVisual'
 import './Hero.css'
-import { useEffect, useState } from 'react'
 
 function LiveAvailability({ es }) {
   const [time, setTime] = useState('')
@@ -17,7 +16,9 @@ function LiveAvailability({ es }) {
       hour12: false,
     })
 
-    const update = () => setTime(formatter.format(new Date()))
+    const update = () => {
+      setTime(formatter.format(new Date()))
+    }
 
     update()
     const timer = window.setInterval(update, 1000)
@@ -28,19 +29,29 @@ function LiveAvailability({ es }) {
   return (
     <div className="live-availability">
       <span className="live-availability-status">
-        <span className="live-availability-dot" aria-hidden="true" />
-        {es ? 'Disponible para proyectos' : 'Available for new projects'}
+        <span
+          className="live-availability-dot"
+          aria-hidden="true"
+        />
+        {es
+          ? 'Disponible para proyectos'
+          : 'Available for new projects'}
       </span>
 
       <span className="live-availability-clock">
         <span>PKT</span>
-        <time aria-label={es ? 'Hora de Pakistán' : 'Pakistan time'}>
+        <time
+          aria-label={
+            es ? 'Hora de Pakistán' : 'Pakistan time'
+          }
+        >
           {time || '--:--:--'}
         </time>
       </span>
     </div>
   )
 }
+
 export default function Hero({ language = 'en' }) {
   const es = language === 'es'
 
@@ -54,34 +65,54 @@ export default function Hero({ language = 'en' }) {
         <LiveAvailability es={es} />
 
         <p className="hv-intro">
-          {es ? 'Hola, soy' : 'Hi, I’m'} {profile.name}.
+          {es
+            ? 'Hola, soy Muhammad Mudasir.'
+            : "Hi, I'm Muhammad Mudasir."}
         </p>
 
-        <HeroSpecialties language={language} />
+        <div className="hv-role-row">
+          <span className="hv-role-fixed">
+            GoHighLevel
+          </span>
+          <HeroSpecialties language={language} />
+        </div>
 
         <h1 id="hero-title">
-          {es ? 'Tu próximo cliente.' : 'Your next customer.'}
+          {es
+            ? 'Creo sistemas GoHighLevel que convierten'
+            : 'I Build GoHighLevel Systems That Turn'}
+          {' '}
           <span>
             {es
-              ? 'Un recorrido mejor conectado.'
-              : 'A better-connected journey.'}
+              ? 'Leads en clientes.'
+              : 'Leads Into Customers.'}
           </span>
         </h1>
 
-        <p className="hv-description">
-          {es
-            ? 'Diseño sitios web, embudos y automatizaciones en GoHighLevel que conectan el primer clic con el seguimiento y las reservas. Menos tareas manuales. Un proceso más claro para tu equipo.'
-            : 'I design websites, funnels and GoHighLevel automations that connect the first click with follow-up and booking. Less manual work. A clearer process for your team.'}
-        </p>
+        <div className="hv-description">
+          <p>
+            {es
+              ? 'Soy Muhammad Mudasir, especialista en GoHighLevel con más de 4 años de experiencia práctica creando sistemas completos de CRM, automatización e inteligencia artificial para agencias y empresas de servicios.'
+              : "I'm Muhammad Mudasir, a GoHighLevel specialist with 4+ years of hands-on experience building complete CRM, automation, and AI-powered systems for agencies and service-based businesses."}
+          </p>
+
+          <p>
+            {es
+              ? 'Desde embudos y flujos de trabajo hasta agentes de IA, integraciones y configuración A2P, ayudo a las empresas a simplificar sus operaciones, automatizar el seguimiento y mejorar la experiencia de sus clientes.'
+              : 'From funnels and workflows to AI agents, integrations, and A2P setup, I help businesses streamline operations, automate follow-ups, and build better customer journeys.'}
+          </p>
+        </div>
 
         <div className="hv-actions">
           <a className="hv-primary" href="#contact">
-            {es ? 'Hablemos de tu proyecto' : 'Let’s discuss your project'}
+            {es
+              ? 'Hablemos de tu proyecto'
+              : "Let's Discuss Your Project"}
             <ArrowUpRight size={19} aria-hidden="true" />
           </a>
 
           <a className="hv-secondary" href="#projects">
-            {es ? 'Explorar proyectos' : 'Explore projects'}
+            {es ? 'Ver mis proyectos' : 'View My Work'}
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
@@ -90,21 +121,29 @@ export default function Hero({ language = 'en' }) {
           <div>
             <strong>4+</strong>
             <span>
-              {es ? 'años con GoHighLevel' : 'years with GoHighLevel'}
+              {es
+                ? 'Años de experiencia'
+                : 'Years Experience'}
             </span>
           </div>
 
-          <a
-            href={profile.upwork}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <strong>Top Rated</strong>
+          <div>
+            <strong>100+</strong>
             <span>
-              {es ? 'Ver perfil en Upwork' : 'View Upwork profile'}
-              <ArrowUpRight size={13} aria-hidden="true" />
+              {es
+                ? 'Subcuentas GHL'
+                : 'GHL Sub-Accounts'}
             </span>
-          </a>
+          </div>
+
+          <div>
+            <strong>200+</strong>
+            <span>
+              {es
+                ? 'Aprobaciones A2P gestionadas'
+                : 'A2P Approvals Handled'}
+            </span>
+          </div>
         </div>
 
         <p className="hv-markets">
@@ -118,7 +157,9 @@ export default function Hero({ language = 'en' }) {
 
       <a className="hv-scroll" href="#skills">
         <ArrowDown size={16} aria-hidden="true" />
-        {es ? 'Explora las herramientas' : 'Explore the toolkit'}
+        {es
+          ? 'Explora las herramientas'
+          : 'Explore the toolkit'}
       </a>
     </section>
   )

@@ -298,3 +298,358 @@
     transform: none;
   }
 }
+/* Client reviews — dark and gold */
+#reviews .rv-heading {
+  margin-bottom: 22px;
+}
+
+#reviews .rv-note {
+  max-width: 720px;
+  color: #d2c8b7;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#reviews .rv-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+#reviews .rv-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#reviews .rv-trust > a,
+#reviews .rv-trust > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 9px 13px;
+  border: 1px solid #ad895043;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e7c66b12, #e7c66b04);
+  color: #f0d69f;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+#reviews .rv-work-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 11px 17px;
+  border: 1px solid #efd49b;
+  border-radius: 9px;
+  background: linear-gradient(115deg, #f0d9a5, #dfbd7e);
+  color: #211a10;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#reviews .rv-card {
+  flex-basis: 350px;
+  width: 350px;
+  padding: 25px;
+  border: 1px solid #b18b484d;
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      ellipse at top right,
+      #c9a35a16,
+      transparent 65%
+    ),
+    linear-gradient(145deg, #29251e, #1b1915);
+  box-shadow: inset 0 1px 0 #ffe5ad09;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+#reviews .rv-card-top {
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+#reviews .rv-stars {
+  color: #efd08a;
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+#reviews .rv-star-empty {
+  color: #75684e;
+}
+
+#reviews .rv-platform {
+  padding: 6px 10px;
+  border: 1px solid #e7c66b35;
+  border-radius: 7px;
+  background: #e7c66b0c;
+  color: #f0d9a5;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#reviews .rv-card-label {
+  margin: 0 0 9px;
+  color: #c6af83;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 1.6px;
+}
+
+#reviews .rv-card h3 {
+  min-height: 0;
+  margin-bottom: 16px;
+  color: #fff0d6;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+#reviews .rv-card blockquote {
+  color: #e0d7c8;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+#reviews .rv-excerpt {
+  display: block;
+  margin-top: 10px;
+  color: #baaa8c;
+  font-size: 10px;
+  font-style: normal;
+}
+
+#reviews .rv-rating-only {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 25px;
+  color: #c9bda7;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+#reviews .rv-rating-only strong {
+  color: #efd08a;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+#reviews .rv-person {
+  gap: 10px;
+  padding-top: 17px;
+  border-top-color: #c4a36a26;
+}
+
+#reviews .rv-avatar {
+  flex-basis: 40px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #eed49b;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0d9a5, #cda75d);
+  color: #241c10;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#reviews .rv-person-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+#reviews .rv-person strong {
+  color: #f2e7d2;
+  font-weight: 600;
+}
+
+#reviews .rv-person small {
+  color: #c5b595;
+}
+
+#reviews .rv-source {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid #d4b27335;
+  border-radius: 50%;
+  background: #e7c66b08;
+  color: #f0d9a5;
+}
+
+#reviews a:focus-visible,
+#reviews .rv-playback button:focus-visible {
+  outline: 2px solid #efd08a;
+  outline-offset: 4px;
+}
+
+#reviews .rv-playback {
+  display: none;
+}
+
+@media (hover: hover) {
+  #reviews .rv-card:hover {
+    border-color: #d4af69;
+    box-shadow: inset 0 1px 0 #ffe5ad20;
+  }
+
+  #reviews .rv-trust a:hover,
+  #reviews .rv-source:hover {
+    background: #e7c66b1c;
+    border-color: #e7c66b;
+  }
+}
+
+@media (max-width: 600px) {
+  #reviews .rv-card {
+    flex-basis: min(320px, calc(100vw - 56px));
+    width: min(320px, calc(100vw - 56px));
+    padding: 22px;
+  }
+
+  #reviews .rv-trust-row {
+    align-items: stretch;
+  }
+
+  #reviews .rv-trust {
+    width: 100%;
+    gap: 8px;
+  }
+
+  #reviews .rv-trust > a,
+  #reviews .rv-trust > span {
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+
+  #reviews .rv-work-link {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) and (prefers-reduced-motion: no-preference) {
+  #reviews .rv-track {
+    animation-duration: 220s;
+  }
+
+  #reviews .rv-window:focus-within .rv-track,
+  #reviews .rv-window:hover .rv-track {
+    animation-play-state: paused;
+  }
+
+  #reviews .rv-playback {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #c5b595;
+    font-size: 11px;
+  }
+
+  #reviews .rv-playback button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid #d4b27350;
+    border-radius: 50%;
+    background: #29251e;
+    color: #efd08a;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #reviews .rv-card {
+    transition: none;
+  }
+}
+/* Hide the scrollbar; retain touch and keyboard scrolling. */
+#reviews .rv-window {
+  scrollbar-width: none;
+  border: 0;
+  padding-bottom: 6px;
+}
+
+#reviews .rv-window::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keep keyboard focus visible without the large outer box. */
+#reviews .rv-window:focus-visible {
+  outline: 0;
+}
+
+#reviews .rv-window:focus-visible .rv-card {
+  border-color: #efd08a;
+}
+
+#reviews .rv-card {
+  padding: 22px;
+  border-color: #b18b4838;
+  background:
+    radial-gradient(at top right, #d5ac5010, transparent 65%),
+    linear-gradient(145deg, #28241d, #1b1915);
+  box-shadow: none;
+}
+
+#reviews .rv-card-top {
+  margin-bottom: 16px;
+}
+
+#reviews .rv-card h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+#reviews .rv-card blockquote {
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+#reviews .rv-rating-only {
+  justify-content: flex-start;
+  color: #c8bead;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+#reviews .rv-person {
+  padding-top: 14px;
+  border-top-color: #d4b27320;
+}
+
+#reviews .rv-hint {
+  display: none;
+}
+
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+  #reviews.rv-scroll-active .rv-window {
+    overflow: hidden;
+  }
+
+  #reviews.rv-scroll-active .rv-inner {
+    position: sticky;
+  }
+}

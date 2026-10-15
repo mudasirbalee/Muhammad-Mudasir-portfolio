@@ -1,7 +1,61 @@
 import ContactForm from './ContactForm'
-import { ArrowUpRight, Mail, ArrowUp } from 'lucide-react'
+import { ArrowUpRight, Mail } from 'lucide-react'
 import { profile } from './content'
 import './Contact.css'
+const socialProfiles = [
+  {
+    name: 'LinkedIn',
+    href: profile.linkedin,
+    logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg',
+  },
+  {
+    name: 'Upwork',
+    href: profile.upwork,
+    logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/upwork.svg',
+  },
+  {
+    name: 'Fiverr',
+    href: 'https://www.fiverr.com/s/9ddXpyE',
+    logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fiverr.svg',
+  },
+]
+
+function SocialLinks({ footer = false }) {
+  return (
+    <div className={footer ? 'footer-social-links' : 'contact-social-links'}>
+      {socialProfiles.map(item => (
+        <a
+          key={item.name}
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${item.name} — Muhammad Mudasir`}
+        >
+          <span className="social-brand-icon" aria-hidden="true">
+            <img
+              src={item.logo}
+              alt=""
+              width="22"
+              height="22"
+            />
+          </span>
+
+          <span className="social-brand-name">
+            {item.name}
+          </span>
+
+          {!footer && (
+            <ArrowUpRight
+              className="social-link-arrow"
+              size={16}
+              aria-hidden="true"
+            />
+          )}
+        </a>
+      ))}
+    </div>
+  )
+}
 
 const copy = {
   en: {
@@ -109,45 +163,29 @@ export default function Contact({ language = 'en' }) {
             <p className="contact-time-note">{t.note}</p>
 
             <div className="contact-socials">
-              <span>{t.elsewhere}</span>
-
-              <a
-                href="https://www.linkedin.com/in/muhammad-mudasir-947791296"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-
-              <a
-                href={profile.upwork}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Upwork
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            </div>
+  <span>{t.elsewhere}</span>
+  <SocialLinks />
+</div>
           </aside>
           <ContactForm language={language} />
         </div>
       </section>
 
       <footer className="portfolio-footer">
-        <a className="footer-brand" href="#home" aria-label={profile.name}>
-          mudasir<span>.</span>
-        </a>
+  <a
+    className="footer-brand"
+    href="#home"
+    aria-label={profile.name}
+  >
+    mudasir<span>.</span>
+  </a>
 
-        <p>
-          © {new Date().getFullYear()} {profile.name}. {t.rights}
-        </p>
+  <p>
+    © {new Date().getFullYear()} {profile.name}. {t.rights}
+  </p>
 
-        <a className="footer-top" href="#home">
-          {t.top}
-          <ArrowUp size={17} aria-hidden="true" />
-        </a>
-      </footer>
+  <SocialLinks footer />
+</footer>
     </>
   )
 }

@@ -1,58 +1,205 @@
 import { useEffect, useRef, useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
+import { profile } from './content'
 import './Reviews.css'
+
+const fiverrUrl = 'https://www.fiverr.com/s/9ddXpyE'
 
 const reviews = [
   {
-    title: 'GoHighLevel CRM & Automation',
-    role: 'Agency Owner',
-    text: 'Muhammad did an excellent job setting up our GoHighLevel CRM and automation workflows. He understood our requirements quickly and organized everything in a way that made managing leads and following up with prospects much easier.',
+    platform: 'Fiverr',
+    title: 'GoHighLevel Setup',
+    rating: 5,
+    text: 'Muhammad did a great job with my GoHighLevel setup. He was professional, communicated well, and delivered the landing page, form, and automation workflow as agreed. Highly recommended for anyone looking for a reliable GHL specialist!',
   },
   {
-    title: 'Funnels & Landing Pages',
-    role: 'Business Consultant',
-    text: 'Great experience working with Muhammad on our funnel build. He paid attention to the layout, mobile responsiveness, and user journey. Communication was clear, and he made sure the important details were handled properly.',
+    platform: 'Fiverr',
+    title: 'GHL Workflow Cleanup',
+    rating: 5,
+    text: 'Really happy with the work. Muhammad understood what we needed, cleaned up the GHL workflows, and made sure everything was working properly. Communication was easy and he kept me updated throughout the project. Would definitely work with him again.',
   },
   {
-    title: 'Workflow Automation',
-    role: 'Marketing Agency Owner',
-    text: 'Muhammad helped us structure our workflows, triggers, tags, and follow-up sequences. He took the time to understand the process before building, which made the final setup more practical and easier to manage.',
+    platform: 'Fiverr',
+    title: 'CRM & Automation Setup',
+    rating: 5,
+    text: 'Excellent GHL expert! Very professional, responsive, and delivered exactly what I needed. The automation and CRM setup were clean and well-structured. Highly recommended!',
   },
   {
-    title: 'Real Estate CRM Setup',
-    role: 'Real Estate Professional',
-    text: 'Muhammad helped organize our lead pipeline and follow-up process inside GoHighLevel. Having a clearer view of where each lead stands has made our day-to-day lead management more organized.',
+    platform: 'Fiverr',
+    title: 'GoHighLevel Support',
+    rating: 5,
+    text: 'Muhammad did an amazing job! He exceeded our expectations, we will definitely use his as our GHL expert for future projects.',
   },
   {
-    title: 'Calendar & Appointment Automation',
-    role: 'Service Business Owner',
-    text: 'Muhammad helped us configure our booking process and appointment reminders in GoHighLevel. He was detail-oriented and focused on making the customer booking experience straightforward.',
+    platform: 'Fiverr',
+    title: 'GHL Systems & Automation',
+    rating: 5,
+    text: 'Excellent experience working together. Delivered a clean, well-structured GHL system with smooth automation and clear communication throughout. Highly recommended.',
   },
   {
-    title: 'SaaS & Snapshot Configuration',
-    role: 'SaaS Agency Founder',
-    text: 'Muhammad has a solid understanding of GoHighLevel account configuration and reusable systems. His structured approach to snapshots and account setup helped us create a more consistent foundation for our client onboarding process.',
+    platform: 'Fiverr',
+    title: 'GoHighLevel Website',
+    rating: 5,
+    text: 'Muhammad Mudasir created a lovely small website for us on GoHighLevel. His work was very professional, creative, and timely. He paid great attention to detail and exceeded our expectations. Everything was completed smoothly and efficiently. We would definitely recommend Muhammad Mudasir!',
   },
   {
-    title: 'CRM Cleanup & Troubleshooting',
-    role: 'Operations Manager',
-    text: 'Muhammad approached our CRM issues methodically and helped us improve the overall organization of our account. I appreciated his attention to detail and his willingness to explain the changes rather than simply making them.',
+    platform: 'Fiverr',
+    title: 'CRM, Funnels & Automation',
+    rating: 5,
+    text: 'Delivered top-tier CRM setup, funnels, and automation using GoHighLevel. The workflow was seamless, highly effective, and aligned perfectly with my business goals. Great expertise and support throughout!',
   },
   {
-    title: 'AI & Lead Follow-Up Systems',
-    role: 'Digital Marketing Consultant',
-    text: 'Muhammad helped us think through how AI-assisted conversations and automated follow-ups could fit into our lead management process. He focused on the actual business requirements and practical implementation.',
+    platform: 'Fiverr',
+    title: 'Client Feedback',
+    rating: 5,
+    text: 'love your work a very good and honest person',
   },
   {
-    title: 'Membership & Payment Integration',
-    role: 'Online Coach',
-    text: 'Muhammad helped us organize our membership experience and payment-related setup. He paid attention to the customer journey and the small details that make a digital offer easier to navigate.',
+    platform: 'Fiverr',
+    title: 'Landing Page & Lead Capture',
+    rating: 5,
+    text: 'Muhammad did a great job creating my landing page and setting up the lead capture form and automated email in GoHighLevel. Communication was smooth, and the delivery matched my requirements. Highly recommend his GHL services!',
   },
   {
-    title: 'Long-Term GHL Technical Support',
-    role: 'Agency Director',
-    text: 'Muhammad brings a practical, solution-focused approach to GoHighLevel projects. He communicates clearly, asks relevant questions, and understands that a good CRM build should support the business beyond the initial setup.',
+    platform: 'Upwork',
+    title: 'CRM Workflows, Funnels & Zapier Automation',
+    rating: 5,
+    text: 'Great experience working with this seller! They set up my GoHighLevel workflows, funnels, and Zapier automation exactly as I needed. Everything was done on time and works perfectly.',
+    excerpt: true,
+  },
+  {
+    platform: 'Upwork',
+    title: 'Duda Connection Integration',
+    rating: 5,
+    text: 'It was a great experience working with Muhammad on our GHL project. We will definitely make use of his services again',
+  },
+  {
+    platform: 'Upwork',
+    title: 'GoHighLevel CRM Automation',
+    rating: 5,
+    text: 'Muhammad is a highly skilled GoHighLevel expert who handled our landing page, CRM setup, workflows, and chatbot automation efficiently.',
+    excerpt: true,
+  },
+  {
+    platform: 'Upwork',
+    title: 'Customer Sales Funnels',
+    rating: 4,
+    text: 'Executes work and is professional. Thanks!',
+  },
+  {
+    platform: 'Upwork',
+    title: 'Funnel & Appointment Booking',
+    rating: 5,
+    text: "I had a great experience with Muhammad. He's very communicative and good at GHL stuff.",
+  },
+  {
+    platform: 'Upwork',
+    title: 'Automation',
+    rating: 5,
+    text: 'Muhammed Mudasir is very hard working. He will get whatever you need done so fast and it will be done 100% correctly. He is worth every penny.',
+    excerpt: true,
+  },
+  {
+    platform: 'Upwork',
+    title: 'Landing Page Creation',
+    rating: 5,
+    text: 'Very good work.',
+  },
+  {
+    platform: 'Upwork',
+    title: 'Custom GoHighLevel Dashboard',
+    rating: 5,
+    text: 'Good job',
+  },
+  {
+    platform: 'Upwork',
+    title: 'A2P Verification',
+    rating: 5,
+    text: '',
+  },
+  {
+    platform: 'Upwork',
+    title: 'GoHighLevel Home Page Design & Setup',
+    rating: 5,
+    text: '',
   },
 ]
+
+function ReviewCard({ review, es, duplicate }) {
+  const url = review.platform === 'Fiverr'
+    ? fiverrUrl
+    : profile.upwork
+
+  return (
+    <article className="rv-card">
+      <div className="rv-card-top">
+        <span
+          className="rv-stars"
+          role="img"
+          aria-label={`${review.rating} ${es ? 'de 5 estrellas' : 'out of 5 stars'}`}
+        >
+          <span aria-hidden="true">
+            {'★'.repeat(review.rating)}
+            <span className="rv-star-empty">
+              {'★'.repeat(5 - review.rating)}
+            </span>
+          </span>
+        </span>
+
+        <span className="rv-platform">
+          {review.platform}
+        </span>
+      </div>
+
+      <p className="rv-card-label">
+        {es ? 'LO QUE DICEN LOS CLIENTES' : 'WHAT CLIENTS SAY'}
+      </p>
+
+      <h3 lang="en">{review.title}</h3>
+
+      {review.text ? (
+        <blockquote lang="en">
+          “{review.text}”
+          {review.excerpt && (
+            <small className="rv-excerpt">
+              {es ? 'Extracto de la reseña' : 'Review excerpt'}
+            </small>
+          )}
+        </blockquote>
+      ) : (
+        <p className="rv-rating-only">
+  {es
+    ? 'El cliente dejó una valoración sin comentario escrito.'
+    : 'The client left a star rating without written feedback.'}
+</p>
+      )}
+
+      <footer className="rv-person">
+        <span className="rv-avatar" aria-hidden="true">
+          {review.platform === 'Fiverr' ? 'fi' : 'up'}
+        </span>
+
+        <span className="rv-person-copy">
+          <strong>
+            {review.platform} {es ? 'cliente' : 'client'}
+          </strong>
+        
+        </span>
+
+        <a
+          className="rv-source"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={duplicate ? -1 : undefined}
+          aria-label={`${es ? 'Ver perfil en' : 'View profile on'} ${review.platform}`}
+        >
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
+      </footer>
+    </article>
+  )
+}
 
 export default function Reviews({ language = 'en' }) {
   const sectionRef = useRef(null)
@@ -68,6 +215,8 @@ export default function Reviews({ language = 'en' }) {
     const sticky = stickyRef.current
     const viewport = windowRef.current
     const track = trackRef.current
+
+    if (!section || !sticky || !viewport || !track) return
 
     const desktop = window.matchMedia(
       '(min-width: 1100px) and (prefers-reduced-motion: no-preference)'
@@ -95,30 +244,39 @@ export default function Reviews({ language = 'en' }) {
     }
 
     const measure = () => {
-      const top = parseFloat(getComputedStyle(sticky).top) || 0
+  enabled = desktop.matches
 
-      // Use normal horizontal scrolling if the screen is too short.
-      enabled =
-        desktop.matches &&
-        sticky.offsetHeight + top + 20 < window.innerHeight
+  section.classList.toggle('rv-scroll-active', enabled)
 
-      section.classList.toggle('rv-scroll-active', enabled)
+  if (enabled) {
+    // Tall sections can settle higher so the cards remain visible.
+    const stickyTop = Math.min(
+      90,
+      window.innerHeight - sticky.offsetHeight - 16
+    )
 
-      if (enabled) {
-        viewport.scrollLeft = 0
-        distance = Math.max(0, track.scrollWidth - viewport.clientWidth)
-        section.style.height = `${sticky.offsetHeight + distance}px`
-      } else {
-        section.style.removeProperty('height')
-        track.style.removeProperty('transform')
-      }
+    sticky.style.top = `${stickyTop}px`
+    viewport.scrollLeft = 0
 
-      schedule()
-    }
+    distance = Math.max(
+      0,
+      track.scrollWidth - viewport.clientWidth
+    )
+
+    section.style.height = `${sticky.offsetHeight + distance}px`
+  } else {
+    sticky.style.removeProperty('top')
+    section.style.removeProperty('height')
+    track.style.removeProperty('transform')
+  }
+
+  schedule()
+}
 
     const observer = new ResizeObserver(measure)
     observer.observe(sticky)
     observer.observe(viewport)
+    observer.observe(track)
 
     desktop.addEventListener('change', measure)
     window.addEventListener('resize', measure)
@@ -128,6 +286,7 @@ export default function Reviews({ language = 'en' }) {
     return () => {
       cancelAnimationFrame(frame)
       observer.disconnect()
+      sticky.style.removeProperty('top')
       desktop.removeEventListener('change', measure)
       window.removeEventListener('resize', measure)
       window.removeEventListener('scroll', schedule)
@@ -138,39 +297,79 @@ export default function Reviews({ language = 'en' }) {
   }, [])
 
   return (
-    <section id="reviews" className="rv-section" ref={sectionRef}>
+    <section
+      id="reviews"
+      className="rv-section"
+      ref={sectionRef}
+      aria-labelledby="reviews-title"
+    >
       <div className="rv-inner" ref={stickyRef}>
         <header className="rv-heading">
           <p className="rv-eyebrow">
-            {es ? 'RESEÑAS' : 'REVIEWS'}
+            {es ? 'RESEÑAS DE CLIENTES' : 'CLIENT REVIEWS'}
           </p>
 
-          <h2>
-            {es ? 'El trabajo importa.' : 'The work matters.'}
+          <h2 id="reviews-title">
+            {es ? 'No te quedes solo' : "Don't Just Take"}
             <span>
-              {es
-                ? 'La experiencia también.'
-                : 'So does the experience.'}
+              {es ? 'con mi palabra.' : 'My Word for It.'}
             </span>
           </h2>
 
           <p className="rv-note">
             {es
-              ? '10 reseñas de ejemplo en inglés. No son testimonios verificados.'
-              : '10 sample reviews for layout preview. These are not verified client testimonials.'}
+              ? 'Opiniones de clientes con quienes he trabajado para mejorar sus sistemas CRM, optimizar flujos de trabajo y simplificar sus operaciones.'
+              : "Real feedback from clients I've worked with to build better CRM systems, streamline workflows, and simplify business operations."}
           </p>
         </header>
 
-        <div className="rv-mobile-controls">
-          <span>{es ? 'Mantén pulsado para pausar' : 'Hold a card to pause'}</span>
+        <div className="rv-trust-row">
+          <div className="rv-trust">
+            <a
+              href={profile.upwork}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Top Rated on Upwork
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+
+            <a
+              href={fiverrUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Level 1 Seller on Fiverr
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+
+            <span>
+              {es ? 'Enfoque en el cliente' : 'Client-Focused Delivery'}
+            </span>
+          </div>
+
+          <a className="rv-work-link" href="#projects">
+            {es ? 'Ver mis proyectos' : 'View My Work'}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div className="rv-playback">
+          <span>
+            {es ? 'Opiniones de Fiverr y Upwork' : 'Feedback from Fiverr & Upwork'}
+          </span>
+
           <button
             type="button"
             onClick={() => setPaused(value => !value)}
             aria-pressed={paused}
+            aria-label={
+              paused
+                ? es ? 'Reanudar movimiento' : 'Resume review movement'
+                : es ? 'Pausar movimiento' : 'Pause review movement'
+            }
           >
-            {paused
-              ? es ? 'Reanudar' : 'Resume'
-              : es ? 'Pausar' : 'Pause'}
+            <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>
           </button>
         </div>
 
@@ -179,16 +378,13 @@ export default function Reviews({ language = 'en' }) {
           className={`rv-window${paused || holding ? ' rv-paused' : ''}`}
           tabIndex={0}
           role="region"
-          aria-label={es ? 'Reseñas de ejemplo' : 'Sample reviews'}
+          aria-label={es ? 'Reseñas de clientes' : 'Client reviews'}
           onPointerDown={event => {
-            if (event.pointerType !== 'mouse') {
-              event.currentTarget.setPointerCapture(event.pointerId)
-              setHolding(true)
-            }
+            if (event.pointerType !== 'mouse') setHolding(true)
           }}
           onPointerUp={() => setHolding(false)}
           onPointerCancel={() => setHolding(false)}
-          onLostPointerCapture={() => setHolding(false)}
+          onPointerLeave={() => setHolding(false)}
         >
           <div className="rv-track" ref={trackRef}>
             {[0, 1].map(group => (
@@ -198,27 +394,12 @@ export default function Reviews({ language = 'en' }) {
                 aria-hidden={group === 1 ? true : undefined}
               >
                 {reviews.map((review, index) => (
-                  <article className="rv-card" key={review.title} lang="en">
-                    <div className="rv-card-top">
-                      <span className="rv-stars" aria-label="5 out of 5 stars, sample">
-                        ★★★★★
-                      </span>
-                      <span className="rv-sample">SAMPLE</span>
-                    </div>
-
-                    <h3>{review.title}</h3>
-                    <blockquote>“{review.text}”</blockquote>
-
-                    <footer className="rv-person">
-                      <span className="rv-avatar" aria-hidden="true">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span>
-                        <strong>{review.role}</strong>
-                        <small>Sample reviewer</small>
-                      </span>
-                    </footer>
-                  </article>
+                  <ReviewCard
+                    key={`${review.platform}-${index}`}
+                    review={review}
+                    es={es}
+                    duplicate={group === 1}
+                  />
                 ))}
               </div>
             ))}

@@ -366,48 +366,80 @@ export default function App() {
             </div>
           </div>
 
-          <div className="about-copy">
-            <p className="eyebrow">
-              <span className="eyebrow-line" aria-hidden="true" />
-              {t.about.eyebrow}
-            </p>
+         <div className="about-copy">
+  <p className="eyebrow">
+    <span className="eyebrow-line" aria-hidden="true" />
+    {language === 'es' ? 'SOBRE MÍ' : 'ABOUT ME'}
+  </p>
 
-            <h2 id="about-title">
-              {t.about.title}
-              <br />
-              <span className="gradient-text">
-                {t.about.highlight}
-              </span>
-            </h2>
+  <h2 id="about-title">
+    {language === 'es'
+      ? 'Tu negocio tiene muchas piezas.'
+      : 'Your Business Has Moving Parts.'}
+    <br />
+    <span className="gradient-text">
+      {language === 'es'
+        ? 'Las ayudo a trabajar juntas.'
+        : 'I Help Them Work Together.'}
+    </span>
+  </h2>
 
-            {t.about.paragraphs.map((paragraph, index) => (
-              <p className="about-paragraph" key={index}>
-                {paragraph}
-              </p>
-            ))}
+  <p className="about-paragraph">
+    {language === 'es'
+      ? 'Soy Muhammad Mudasir, especialista en automatización CRM y sistemas de IA con GoHighLevel, con más de 4 años de experiencia práctica creando y optimizando sistemas para agencias y empresas de servicios.'
+      : "I'm Muhammad Mudasir, a GoHighLevel CRM Automation & AI Systems Specialist with 4+ years of hands-on experience building and optimizing systems for agencies and service-based businesses."}
+  </p>
 
-            <p className="markets-note">{t.about.markets}</p>
+  <p className="about-paragraph">
+    {language === 'es'
+      ? 'Me especializo en conectar todo el recorrido del cliente, desde la captación de leads y la gestión del CRM hasta el seguimiento automatizado, la reserva de citas y las conversaciones con IA. Mi objetivo es ayudar a las empresas a reducir el trabajo manual, mejorar los tiempos de respuesta y gestionar sus leads de forma más eficaz.'
+      : 'I specialize in connecting the entire customer journey from lead capture and CRM management to automated follow-ups, appointment booking, and AI-powered conversations. My goal is to help businesses reduce manual work, improve response times, and manage their leads more effectively.'}
+  </p>
 
-            <div className="about-actions">
-              <a
-                className="primary-button"
-                href={profile.upwork}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t.about.profileCta}
-                <ArrowUpRight size={18} aria-hidden="true" />
-              </a>
+  <p className="about-paragraph">
+    {language === 'es' ? 'Como ' : 'As a '}
+    <strong className="about-credential">
+      {language === 'es'
+        ? 'freelancer Top Rated en Upwork'
+        : 'Top Rated freelancer on Upwork'}
+    </strong>
+    {language === 'es' ? ' y ' : ' and a '}
+    <strong className="about-credential">
+      {language === 'es'
+        ? 'vendedor de nivel 1 en Fiverr'
+        : 'Level 1 Seller on Fiverr'}
+    </strong>
+    {language === 'es'
+      ? ', aporto experiencia práctica, un enfoque centrado en el cliente y el compromiso de ofrecer soluciones fiables. He gestionado más de 100 subcuentas de GHL y más de 200 aprobaciones A2P, ayudando a las empresas a crear y mantener sistemas mejor conectados.'
+      : ", I bring practical experience, a client-focused mindset, and a commitment to delivering reliable solutions. I've managed 100+ GHL sub-accounts and handled 200+ A2P approvals, helping businesses build and maintain better-connected systems."}
+  </p>
 
-              <a
-                className="text-link"
-                href={`mailto:${profile.email}`}
-              >
-                {t.about.contactCta}
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
+  <p className="about-paragraph">
+    {language === 'es'
+      ? 'Ya sea que necesites una configuración completa de GoHighLevel, automatizaciones avanzadas, integraciones con otras plataformas o resolver problemas de un sistema existente, me enfoco en crear soluciones adaptadas a las necesidades reales de tu negocio.'
+      : 'Whether you need a complete GoHighLevel setup, advanced workflow automation, third-party integrations, or troubleshooting for an existing system, I focus on building solutions around your actual business needs.'}
+  </p>
+
+  <div className="about-approach">
+    <strong>
+      {language === 'es' ? 'Mi enfoque' : 'My Approach'}
+    </strong>
+    <p>
+      {language === 'es'
+        ? 'Soluciones prácticas. Sistemas organizados. Automatización fiable. Comunicación clara.'
+        : 'Practical solutions. Clean systems. Reliable automation. Clear communication.'}
+    </p>
+  </div>
+
+  <div className="about-actions">
+    <a className="primary-button" href="#contact">
+      {language === 'es'
+        ? 'Trabajemos juntos'
+        : "Let's Work Together"}
+      <ArrowUpRight size={18} aria-hidden="true" />
+    </a>
+  </div>
+</div>
 
           <dl className="stats-grid">
             {t.stats.map((stat, index) => (
