@@ -7,45 +7,34 @@ const copy = {
     eyebrow: 'COMMON QUESTIONS',
     title: 'Before we',
     highlight: 'get started.',
-    description:
-      'A few practical details about working together.',
+    description: 'Quick answers about working together.',
     contact: 'Have another question?',
     cta: 'Ask me directly',
     items: [
       {
-        question: 'Can you improve my existing GoHighLevel account?',
+        question: 'What GoHighLevel services do you offer?',
         answer:
-          'Yes. I can review your current CRM, workflows, pages and integrations, identify the changes needed and agree on a focused scope with you before making updates.',
+          'CRM setup, funnels, workflow automation, AI agents, integrations and A2P registration support—from individual tasks to complete systems.',
       },
       {
-        question: 'Can I hire you for one specific task?',
+        question: 'Can you improve my existing setup?',
         answer:
-          'Yes. We can start with a specific task, such as a landing page, workflow repair, calendar setup or integration. Larger projects can be divided into agreed milestones.',
+          'Yes. I can review your account, fix issues and improve workflows, pages or integrations around your business needs.',
       },
       {
-        question: 'What do you need before starting?',
+        question: 'How long will my project take?',
         answer:
-          'A description of your goals, the deliverables you need and any relevant designs or content. After reviewing the scope, I will confirm which account permissions and tool access are required.',
+          'It depends on the scope and required access or content. We agree on a clear timeline before work begins.',
       },
       {
-        question: 'How much will my project cost, and how long will it take?',
+        question: 'How much will it cost?',
         answer:
-          'Pricing and timing depend on the scope, complexity and readiness of your content and accounts. We agree on the cost, deliverables and timeline before work begins.',
+          'Pricing depends on the work involved. Share your requirements, and I’ll confirm the scope and price before we start.',
       },
       {
-        question: 'Do you work with clients in my country?',
+        question: 'Do you provide ongoing support?',
         answer:
-          'I work remotely with clients in the USA, UK, Australia and Canada. My working days are Monday to Friday, and we can agree on meeting times that suit our time zones.',
-      },
-      {
-        question: 'Can you help with A2P registration?',
-        answer:
-          'Yes. I can assist with registration preparation, opt-in forms and SMS setup. Approval and review times are determined by the provider and cannot be guaranteed.',
-      },
-      {
-        question: 'Is support available after handover?',
-        answer:
-          'Yes. We can discuss ongoing maintenance, troubleshooting or further improvements. The support period and included tasks are agreed as part of the project or a separate arrangement.',
+          'Yes. Maintenance, troubleshooting and further improvements are available, with support terms agreed upfront.',
       },
     ],
   },
@@ -53,45 +42,34 @@ const copy = {
     eyebrow: 'PREGUNTAS FRECUENTES',
     title: 'Antes de',
     highlight: 'empezar.',
-    description:
-      'Algunos detalles prácticos sobre cómo trabajar juntos.',
+    description: 'Respuestas rápidas sobre cómo trabajar juntos.',
     contact: '¿Tienes otra pregunta?',
     cta: 'Pregúntame directamente',
     items: [
       {
-        question: '¿Puedes mejorar mi cuenta actual de GoHighLevel?',
+        question: '¿Qué servicios de GoHighLevel ofreces?',
         answer:
-          'Sí. Puedo revisar tu CRM, automatizaciones, páginas e integraciones, identificar los cambios necesarios y acordar contigo un alcance definido antes de realizar actualizaciones.',
+          'Configuración CRM, embudos, automatizaciones, agentes de IA, integraciones y apoyo con el registro A2P, desde tareas concretas hasta sistemas completos.',
       },
       {
-        question: '¿Puedo contratarte para una tarea concreta?',
+        question: '¿Puedes mejorar mi configuración actual?',
         answer:
-          'Sí. Podemos empezar con una página de destino, la reparación de un flujo, la configuración de un calendario o una integración. Los proyectos más grandes pueden dividirse en hitos acordados.',
+          'Sí. Puedo revisar tu cuenta, resolver problemas y mejorar automatizaciones, páginas o integraciones según las necesidades de tu negocio.',
       },
       {
-        question: '¿Qué necesitas antes de empezar?',
+        question: '¿Cuánto tardará mi proyecto?',
         answer:
-          'Una descripción de tus objetivos, los entregables que necesitas y los diseños o contenidos pertinentes. Después de revisar el alcance, confirmaré qué permisos y accesos se requieren.',
+          'Depende del alcance y de los accesos o contenidos necesarios. Acordamos un plazo claro antes de empezar.',
       },
       {
-        question: '¿Cuánto costará mi proyecto y cuánto tardará?',
+        question: '¿Cuánto costará?',
         answer:
-          'El precio y el plazo dependen del alcance, la complejidad y la disponibilidad de tus contenidos y cuentas. Acordamos el coste, los entregables y el calendario antes de empezar.',
+          'El precio depende del trabajo necesario. Comparte tus requisitos y confirmaré el alcance y el precio antes de comenzar.',
       },
       {
-        question: '¿Trabajas con clientes de mi país?',
+        question: '¿Ofreces soporte continuo?',
         answer:
-          'Trabajo a distancia con clientes de Estados Unidos, Reino Unido, Australia y Canadá. Mis días de trabajo son de lunes a viernes y podemos acordar reuniones según nuestras zonas horarias.',
-      },
-      {
-        question: '¿Puedes ayudarme con el registro A2P?',
-        answer:
-          'Sí. Puedo ayudar con la preparación del registro, los formularios de consentimiento y la configuración de SMS. La aprobación y los plazos de revisión dependen del proveedor y no se pueden garantizar.',
-      },
-      {
-        question: '¿Ofreces soporte después de la entrega?',
-        answer:
-          'Sí. Podemos acordar mantenimiento, resolución de problemas o mejoras adicionales. El periodo de soporte y las tareas incluidas se definen dentro del proyecto o mediante un acuerdo separado.',
+          'Sí. Ofrezco mantenimiento, resolución de problemas y mejoras adicionales, con las condiciones de soporte acordadas de antemano.',
       },
     ],
   },
@@ -108,7 +86,7 @@ export default function FAQ({ language = 'en' }) {
     >
       <div className="faq-intro">
         <p className="eyebrow">
-          <span className="eyebrow-line" />
+          <span className="eyebrow-line" aria-hidden="true" />
           {t.eyebrow}
         </p>
 
@@ -134,7 +112,7 @@ export default function FAQ({ language = 'en' }) {
 
       <div className="faq-list">
         {t.items.map((item, index) => (
-          <details className="faq-item" key={index}>
+          <details className="faq-item" key={item.question}>
             <summary>
               <span className="faq-number" aria-hidden="true">
                 {String(index + 1).padStart(2, '0')}

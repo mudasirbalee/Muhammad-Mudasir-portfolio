@@ -79,27 +79,27 @@ export default function Hero({ language = 'en' }) {
 
         <h1 id="hero-title">
           {es
-            ? 'Creo sistemas GoHighLevel que convierten'
-            : 'I Build GoHighLevel Systems That Turn'}
+            ? 'Menos trabajo manual.'
+            : 'Less Manual Work.'}
           {' '}
           <span>
             {es
-              ? 'Leads en clientes.'
-              : 'Leads Into Customers.'}
+              ? 'Más oportunidades que avanzan.'
+              : 'More Leads Moving Forward.'}
           </span>
         </h1>
 
         <div className="hv-description">
           <p>
             {es
-              ? 'Soy Muhammad Mudasir, especialista en GoHighLevel con más de 4 años de experiencia práctica creando sistemas completos de CRM, automatización e inteligencia artificial para agencias y empresas de servicios.'
-              : "I'm Muhammad Mudasir, a GoHighLevel specialist with 4+ years of hands-on experience building complete CRM, automation, and AI-powered systems for agencies and service-based businesses."}
+              ? 'Creo sistemas CRM, automatizaciones y soluciones de IA en GoHighLevel para ayudar a agencias y empresas de servicios a captar leads, dar seguimiento más rápido y convertir consultas en citas.'
+              : 'I build GoHighLevel CRM, automation, and AI systems that help agencies and service businesses capture leads, follow up faster, and turn enquiries into booked appointments.'}
           </p>
 
           <p>
             {es
-              ? 'Desde embudos y flujos de trabajo hasta agentes de IA, integraciones y configuración A2P, ayudo a las empresas a simplificar sus operaciones, automatizar el seguimiento y mejorar la experiencia de sus clientes.'
-              : 'From funnels and workflows to AI agents, integrations, and A2P setup, I help businesses streamline operations, automate follow-ups, and build better customer journeys.'}
+              ? 'Con más de 4 años de experiencia práctica, conecto tus embudos, flujos de trabajo y herramientas en un sistema organizado, adaptado a cómo funciona tu negocio.'
+              : 'With 4+ years of hands-on experience, I connect your funnels, workflows, and tools into one organized system—built around how your business works.'}
           </p>
         </div>
 
@@ -115,35 +115,6 @@ export default function Hero({ language = 'en' }) {
             {es ? 'Ver mis proyectos' : 'View My Work'}
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
-        </div>
-
-        <div className="hv-proof">
-          <div>
-            <strong>4+</strong>
-            <span>
-              {es
-                ? 'Años de experiencia'
-                : 'Years Experience'}
-            </span>
-          </div>
-
-          <div>
-            <strong>100+</strong>
-            <span>
-              {es
-                ? 'Subcuentas GHL'
-                : 'GHL Sub-Accounts'}
-            </span>
-          </div>
-
-          <div>
-            <strong>200+</strong>
-            <span>
-              {es
-                ? 'Aprobaciones A2P gestionadas'
-                : 'A2P Approvals Handled'}
-            </span>
-          </div>
         </div>
 
         <p className="hv-markets">

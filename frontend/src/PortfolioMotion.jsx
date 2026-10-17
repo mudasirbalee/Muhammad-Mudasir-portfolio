@@ -63,7 +63,7 @@ export function CountUp({ value }) {
 
 const specialties = {
   en: [
-    'GoHighLevel Specialist',
+    'CRM Specialist',
     'Funnel Expert',
     'Automation Specialist',
     'AI Chatbot Specialist',

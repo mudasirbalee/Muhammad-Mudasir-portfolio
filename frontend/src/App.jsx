@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-  ArrowUpRight,
-  Workflow,
-  Layers3,
-  Bot,
-  Menu,
-  X,
-} from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import Experience from './Experience'
 import BackToTop from './BackToTop'
 import Hero from './Hero'
@@ -21,8 +14,6 @@ import Services from './Services'
 import { CountUp, useScrollReveal } from './PortfolioMotion'
 import { content, profile } from './content'
 import './App.css'
-
-const expertiseIcons = [Workflow, Layers3, Bot]
 
 const sectionIds = [
   'home',
@@ -201,12 +192,12 @@ export default function App() {
           className="brand"
           href="#home"
           onClick={closeMenu}
-          aria-label={es ? 'Mudasir — Inicio' : 'Mudasir — Home'}
+          aria-label={es ? 'Mudasirr — Inicio' : 'Mudasirr — Home'}
         >
           <span className="brand-symbol" aria-hidden="true">
             m.
           </span>
-          <span className="brand-name">mudasir</span>
+          <span className="brand-name">mudasirr</span>
         </a>
 
         <div className="header-controls">
@@ -293,35 +284,6 @@ export default function App() {
         <Skills language={language} />
 
         <section
-          className="expertise-strip"
-          id="expertise"
-          aria-label={t.expertiseLabel}
-        >
-          {t.expertise.map((item, index) => {
-            const Icon = expertiseIcons[index] || Workflow
-
-            return (
-              <article className="expertise-item" key={item.title}>
-                <span className="expertise-number">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-
-                <Icon
-                  className="expertise-icon"
-                  size={26}
-                  aria-hidden="true"
-                />
-
-                <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
-                </div>
-              </article>
-            )
-          })}
-        </section>
-
-        <section
           className="about-section"
           id="about"
           aria-labelledby="about-title"
@@ -366,7 +328,7 @@ export default function App() {
             </div>
           </div>
 
-         <div className="about-copy">
+      <div className="about-copy">
   <p className="eyebrow">
     <span className="eyebrow-line" aria-hidden="true" />
     {language === 'es' ? 'SOBRE MÍ' : 'ABOUT ME'}
@@ -386,50 +348,33 @@ export default function App() {
 
   <p className="about-paragraph">
     {language === 'es'
-      ? 'Soy Muhammad Mudasir, especialista en automatización CRM y sistemas de IA con GoHighLevel, con más de 4 años de experiencia práctica creando y optimizando sistemas para agencias y empresas de servicios.'
-      : "I'm Muhammad Mudasir, a GoHighLevel CRM Automation & AI Systems Specialist with 4+ years of hands-on experience building and optimizing systems for agencies and service-based businesses."}
+      ? 'Soy Muhammad Mudasir, especialista en GoHighLevel con más de 4 años de experiencia creando sistemas CRM, automatizaciones y soluciones de IA para agencias y empresas de servicios.'
+      : "I'm Muhammad Mudasir, a GoHighLevel specialist with 4+ years of experience building CRM, automation, and AI systems for agencies and service businesses."}
   </p>
 
   <p className="about-paragraph">
     {language === 'es'
-      ? 'Me especializo en conectar todo el recorrido del cliente, desde la captación de leads y la gestión del CRM hasta el seguimiento automatizado, la reserva de citas y las conversaciones con IA. Mi objetivo es ayudar a las empresas a reducir el trabajo manual, mejorar los tiempos de respuesta y gestionar sus leads de forma más eficaz.'
-      : 'I specialize in connecting the entire customer journey from lead capture and CRM management to automated follow-ups, appointment booking, and AI-powered conversations. My goal is to help businesses reduce manual work, improve response times, and manage their leads more effectively.'}
-  </p>
+      ? 'Conecto la captación de leads, el seguimiento y las reservas para reducir el trabajo manual y mantener tu negocio organizado. Como '
+      : 'I connect lead capture, follow-ups, and appointment booking to reduce manual work and keep your business organized. As a '}
 
-  <p className="about-paragraph">
-    {language === 'es' ? 'Como ' : 'As a '}
     <strong className="about-credential">
       {language === 'es'
         ? 'freelancer Top Rated en Upwork'
         : 'Top Rated freelancer on Upwork'}
     </strong>
+
     {language === 'es' ? ' y ' : ' and a '}
+
     <strong className="about-credential">
       {language === 'es'
         ? 'vendedor de nivel 1 en Fiverr'
         : 'Level 1 Seller on Fiverr'}
     </strong>
-    {language === 'es'
-      ? ', aporto experiencia práctica, un enfoque centrado en el cliente y el compromiso de ofrecer soluciones fiables. He gestionado más de 100 subcuentas de GHL y más de 200 aprobaciones A2P, ayudando a las empresas a crear y mantener sistemas mejor conectados.'
-      : ", I bring practical experience, a client-focused mindset, and a commitment to delivering reliable solutions. I've managed 100+ GHL sub-accounts and handled 200+ A2P approvals, helping businesses build and maintain better-connected systems."}
-  </p>
 
-  <p className="about-paragraph">
     {language === 'es'
-      ? 'Ya sea que necesites una configuración completa de GoHighLevel, automatizaciones avanzadas, integraciones con otras plataformas o resolver problemas de un sistema existente, me enfoco en crear soluciones adaptadas a las necesidades reales de tu negocio.'
-      : 'Whether you need a complete GoHighLevel setup, advanced workflow automation, third-party integrations, or troubleshooting for an existing system, I focus on building solutions around your actual business needs.'}
+      ? ', me enfoco en soluciones prácticas, automatizaciones fiables y comunicación clara.'
+      : ', I focus on practical solutions, reliable automation, and clear communication.'}
   </p>
-
-  <div className="about-approach">
-    <strong>
-      {language === 'es' ? 'Mi enfoque' : 'My Approach'}
-    </strong>
-    <p>
-      {language === 'es'
-        ? 'Soluciones prácticas. Sistemas organizados. Automatización fiable. Comunicación clara.'
-        : 'Practical solutions. Clean systems. Reliable automation. Clear communication.'}
-    </p>
-  </div>
 
   <div className="about-actions">
     <a className="primary-button" href="#contact">
