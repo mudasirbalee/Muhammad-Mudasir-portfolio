@@ -99,30 +99,7 @@ const reviews = [
     text: 'Muhammed Mudasir is very hard working. He will get whatever you need done so fast and it will be done 100% correctly. He is worth every penny.',
     excerpt: true,
   },
-  {
-    platform: 'Upwork',
-    title: 'Landing Page Creation',
-    rating: 5,
-    text: 'Very good work.',
-  },
-  {
-    platform: 'Upwork',
-    title: 'Custom GoHighLevel Dashboard',
-    rating: 5,
-    text: 'Good job',
-  },
-  {
-    platform: 'Upwork',
-    title: 'A2P Verification',
-    rating: 5,
-    text: '',
-  },
-  {
-    platform: 'Upwork',
-    title: 'GoHighLevel Home Page Design & Setup',
-    rating: 5,
-    text: '',
-  },
+  
 ]
 
 function ReviewCard({ review, es, duplicate }) {
