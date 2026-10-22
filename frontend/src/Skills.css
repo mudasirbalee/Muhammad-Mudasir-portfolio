@@ -15,8 +15,8 @@
 #skills .sk-ribbon-1 {
   position: relative;
   z-index: 2;
-  background: #ffdf00;
-  color: #111;
+  background: var(--accent);
+  color: var(--accent-contrast);
   transform: rotate(-2.5deg);
 }
 
@@ -24,7 +24,7 @@
   margin-top: 20px;
   background: #111;
   color: #fffdf2;
-  border-block: 1px solid #ffffff25;
+  border-block: 1px solid var(--accent);
   transform: rotate(2deg);
 }
 
@@ -71,7 +71,7 @@
 }
 
 #skills .sk-ribbon:focus-visible {
-  outline: 3px solid #b89645;
+  outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 

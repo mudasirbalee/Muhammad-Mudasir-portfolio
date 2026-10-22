@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, Moon, Palette, Sun, X } from 'lucide-react'
 import Experience from './Experience'
 import BackToTop from './BackToTop'
 import Hero from './Hero'
@@ -13,7 +13,9 @@ import Projects from './Projects'
 import Services from './Services'
 import { CountUp, useScrollReveal } from './PortfolioMotion'
 import { content, profile } from './content'
+import CursorFollower from './CursorFollower'
 import './App.css'
+import './PortfolioTheme.css'
 
 const sectionIds = [
   'home',
@@ -29,12 +31,24 @@ const sectionIds = [
   'contact',
 ]
 
+const accentPalettes = [
+  { name: 'Yellow', color: '#FFE000', rgb: '255, 224, 0', contrast: '#101211' },
+  { name: 'Red', color: '#EF4B3F', rgb: '239, 75, 63', contrast: '#101211' },
+  { name: 'Burgundy', color: '#B92E4A', rgb: '185, 46, 74', contrast: '#FFFFFF' },
+  { name: 'Teal', color: '#0A9B8E', rgb: '10, 155, 142', contrast: '#101211' },
+  { name: 'Orange', color: '#F28A28', rgb: '242, 138, 40', contrast: '#101211' },
+  { name: 'Blue', color: '#315FEA', rgb: '49, 95, 234', contrast: '#FFFFFF' },
+  { name: 'Pink', color: '#E763A5', rgb: '231, 99, 165', contrast: '#101211' },
+]
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
   const headerRef = useRef(null)
   const menuButtonRef = useRef(null)
+  const themePickerRef = useRef(null)
+  const [paletteOpen, setPaletteOpen] = useState(false)
 
   const [language, setLanguage] = useState(() => {
     try {
@@ -45,6 +59,26 @@ export default function App() {
       return 'en'
     }
   })
+
+  const [themeMode, setThemeMode] = useState(() => {
+    try {
+      return localStorage.getItem('portfolio-theme-mode') === 'dark'
+        ? 'dark'
+        : 'light'
+    } catch {
+      return 'light'
+    }
+  })
+
+  const [accentName, setAccentName] = useState(() => {
+    try {
+      return localStorage.getItem('portfolio-accent') || 'Yellow'
+    } catch {
+      return 'Yellow'
+    }
+  })
+  const accent = accentPalettes.find(option => option.name === accentName)
+    || accentPalettes[0]
 
   const es = language === 'es'
   const t = content[language]
@@ -66,7 +100,26 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.lang = language
-    document.title = `${profile.name} | ${content[language].about.role}`
+    const title = `${profile.name} | ${content[language].about.role}`
+    const description = es
+      ? 'Muhammad Mudasir crea CRM en GoHighLevel, automatizaciones y sistemas de IA para agencias y empresas de servicios, incluyendo sitios web, embudos, integraciones y seguimiento de clientes potenciales.'
+      : 'Muhammad Mudasir builds GoHighLevel CRM, automation, and AI systems for agencies and service businesses, including websites, funnels, integrations, and lead follow-up.'
+
+    document.title = title
+
+    const metaValues = [
+      ['meta[name="description"]', description],
+      ['meta[property="og:title"]', title],
+      ['meta[property="og:description"]', description],
+      ['meta[property="og:image"]', new URL(profile.photo, window.location.origin).href],
+      ['meta[name="twitter:title"]', title],
+      ['meta[name="twitter:description"]', description],
+      ['meta[name="twitter:image"]', new URL(profile.photo, window.location.origin).href],
+    ]
+
+    metaValues.forEach(([selector, value]) => {
+      document.querySelector(selector)?.setAttribute('content', value)
+    })
 
     try {
       localStorage.setItem('portfolio-language', language)
@@ -74,6 +127,28 @@ export default function App() {
       // Language switching also works without browser storage.
     }
   }, [language])
+
+  useEffect(() => {
+    if (!paletteOpen) return
+
+    function handleOutside(event) {
+      if (!themePickerRef.current?.contains(event.target)) {
+        setPaletteOpen(false)
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === 'Escape') setPaletteOpen(false)
+    }
+
+    document.addEventListener('pointerdown', handleOutside)
+    document.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [paletteOpen])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -176,7 +251,15 @@ export default function App() {
   }
 
   return (
-    <div className="portfolio">
+    <div
+      className="portfolio"
+      data-mode={themeMode}
+      style={{
+        '--accent': accent.color,
+        '--accent-rgb': accent.rgb,
+        '--accent-contrast': accent.contrast,
+      }}
+    >
       <div className="ambient-background" aria-hidden="true">
         <div className="ambient-glow glow-one" />
         <div className="ambient-glow glow-two" />
@@ -201,6 +284,79 @@ export default function App() {
         </a>
 
         <div className="header-controls">
+          <div className="theme-controls" ref={themePickerRef}>
+            <button
+              className="theme-mode-button"
+              type="button"
+              aria-label={themeMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              title={themeMode === 'light' ? 'Dark mode' : 'Light mode'}
+              onClick={() => {
+                const nextMode = themeMode === 'light' ? 'dark' : 'light'
+                setThemeMode(nextMode)
+                try {
+                  localStorage.setItem('portfolio-theme-mode', nextMode)
+                } catch {
+                  // Theme controls remain usable without browser storage.
+                }
+              }}
+            >
+              {themeMode === 'light'
+                ? <Moon size={15} aria-hidden="true" />
+                : <Sun size={15} aria-hidden="true" />}
+            </button>
+
+            <div className="theme-palette-wrap">
+              <button
+                className="theme-palette-button"
+                type="button"
+                aria-label="Choose accent color"
+                aria-expanded={paletteOpen}
+                aria-controls="theme-palette"
+                title="Choose accent color"
+                onClick={() => setPaletteOpen(open => !open)}
+              >
+                <Palette size={15} aria-hidden="true" />
+                <span
+                  className="theme-current-swatch"
+                  style={{ '--swatch-color': accent.color }}
+                  aria-hidden="true"
+                />
+              </button>
+
+              <div
+                className="theme-palette"
+                id="theme-palette"
+                role="group"
+                aria-label="Accent color"
+                hidden={!paletteOpen}
+              >
+                <span className="theme-palette-label">ACCENT · {accent.name.toUpperCase()}</span>
+                <div className="theme-swatches">
+                  {accentPalettes.map(option => (
+                    <button
+                      className="theme-swatch"
+                      key={option.name}
+                      type="button"
+                      aria-label={`${option.name} accent`}
+                      aria-pressed={accent.name === option.name}
+                      title={option.name}
+                      style={{ '--swatch-color': option.color }}
+                      onClick={() => {
+                        setAccentName(option.name)
+                        setPaletteOpen(false)
+                        try {
+                          localStorage.setItem('portfolio-accent', option.name)
+                        } catch {
+                          // Theme controls remain usable without browser storage.
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div
             className="language-switch"
             role="group"
@@ -412,6 +568,7 @@ export default function App() {
 
            <Contact language={language} />
       <BackToTop language={language} />
+      <CursorFollower />
     </div>
   )
 }

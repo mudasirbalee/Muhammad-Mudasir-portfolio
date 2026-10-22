@@ -8,12 +8,12 @@ function LiveAvailability({ es }) {
   const [time, setTime] = useState('')
 
   useEffect(() => {
-    const formatter = new Intl.DateTimeFormat('en-GB', {
+    const formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: 'Asia/Karachi',
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      hour12: false,
+      hour12: true,
     })
 
     const update = () => {
@@ -81,7 +81,7 @@ export default function Hero({ language = 'en' }) {
           {es
             ? 'Menos trabajo manual.'
             : 'Less Manual Work.'}
-          {' '}
+          <br />
           <span>
             {es
               ? 'Más oportunidades que avanzan.'

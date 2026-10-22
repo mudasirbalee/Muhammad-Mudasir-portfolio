@@ -94,7 +94,7 @@
 
 #experience .rs-period {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 #experience .rs-period:last-child {
@@ -134,7 +134,7 @@
 }
 
 #experience .rs-card {
-  padding: 25px;
+  padding: 22px;
   border: 1px solid #393931;
   border-radius: 16px;
   background:
@@ -306,13 +306,12 @@
 @media (prefers-reduced-motion: no-preference) {
   #experience .rs-timeline > .rs-period.rs-repeat {
     opacity: 0;
-    translate: 80px 0;
-    filter: blur(4px);
+    translate: 28px 0;
+    filter: none;
 
     transition:
-      opacity 750ms ease,
-      translate 1100ms cubic-bezier(0.22, 1, 0.36, 1),
-      filter 850ms ease;
+      opacity 600ms ease,
+      translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   #experience .rs-timeline > .rs-period.rs-repeat.rs-in {
@@ -324,7 +323,7 @@
 
 @media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
   #experience .rs-timeline > .rs-period.rs-repeat {
-    translate: 35px 0;
+    translate: 18px 0;
   }
 
   #experience .rs-timeline > .rs-period.rs-repeat.rs-in {

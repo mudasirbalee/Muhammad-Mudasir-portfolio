@@ -18,16 +18,7 @@
 }
 
 .hero-v2::before {
-  content: '';
-  position: absolute;
-  inset: 0 -20px;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 80% 45%,
-    #e7c66b0c,
-    transparent 55%
-  );
+  content: none;
 }
 
 .hero-v2 .hv-copy {
@@ -63,9 +54,21 @@
   font-size: 16px;
 }
 
+.hero-v2 .hv-role-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  margin: 0 0 28px;
+  color: #101211;
+  font-size: clamp(18px, 2vw, 25px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .portfolio .hero-v2 h1 {
   max-width: 720px;
-  margin: 24px 0;
+  margin: 0 0 24px;
   color: #f5f1e7;
   font-size: clamp(40px, 4.5vw, 66px);
   font-weight: 600;
@@ -77,8 +80,8 @@
 .hero-v2 h1 > span {
   display: block;
   margin-top: 8px;
-  color: #e7c66b;
-  background: linear-gradient(110deg, #f3dfa8, #d8b45d);
+  color: #101211;
+  background: #ffe000;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -87,7 +90,7 @@
 .hero-v2 .hv-description {
   max-width: 550px;
   margin: 0;
-  color: #bdb9ae;
+  color: #62665f;
   font-size: 16px;
   line-height: 1.85;
 }
@@ -119,15 +122,15 @@
 }
 
 .hero-v2 .hv-primary {
-  border: 1px solid #e7c66b;
-  background: #e7c66b;
-  color: #191813;
+  border: 1px solid #ffe000;
+  background: #ffe000;
+  color: #101211;
 }
 
 .hero-v2 .hv-secondary {
-  border: 1px solid #ffffff25;
-  background: #ffffff03;
-  color: #eee7d8;
+  border: 1px solid #10121145;
+  background: transparent;
+  color: #101211;
 }
 
 .hv-primary:hover,
@@ -136,11 +139,11 @@
 }
 
 .hero-v2 .hv-primary:hover {
-  background: #f0d58b;
+  background: #f1d400;
 }
 
 .hero-v2 .hv-secondary:hover {
-  border-color: #e7c66b80;
+  border-color: #101211;
 }
 
 .hv-proof {
@@ -179,14 +182,14 @@
 
 .hero-v2 .hv-markets {
   margin: 22px 0 0;
-  color: #aaa598;
+  color: #62665f;
   font-size: 11px;
   line-height: 1.8;
 }
 
 .hv-markets > span {
   margin: 0 8px;
-  color: #e7c66b;
+  color: #101211;
 }
 
 /* Animated workflow illustration */
@@ -414,7 +417,7 @@
 }
 
 .hero-v2 a:focus-visible {
-  outline: 2px solid #e7c66b;
+  outline: 2px solid #101211;
   outline-offset: 5px;
 }
 
@@ -423,7 +426,7 @@
     animation: hv-enter 850ms ease both;
   }
 
-  .hv-visual {
+  .hero-portrait {
     animation: hv-enter 1100ms ease both;
   }
 
@@ -505,7 +508,7 @@
     max-width: 700px;
   }
 
-  .hv-visual {
+  .hero-portrait {
     width: min(500px, 100%);
     margin: 0 auto;
   }
@@ -517,6 +520,10 @@
   .portfolio .hero-v2 h1 {
     max-width: 680px;
     font-size: clamp(39px, 7vw, 62px);
+  }
+
+  .hero-v2 .hv-role-row {
+    margin-bottom: 24px;
   }
 }
 
@@ -580,98 +587,5 @@
 
   .hv-board {
     transform: none;
-  }
-}
-/* Hero intro, typing and spacing */
-#home.hero-v2 .live-availability {
-  margin-bottom: 20px;
-}
-
-#home.hero-v2 .hv-intro {
-  margin: 0 0 8px;
-  color: #e3dccf;
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-#home.hero-v2 .hv-role-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 8px;
-  margin-bottom: 22px;
-  color: #ead09b;
-  font-size: clamp(18px, 2vw, 25px);
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-#home.hero-v2 .hv-role-fixed {
-  flex-shrink: 0;
-}
-
-#home.hero-v2 .hero-specialties {
-  margin: 0;
-  min-height: 1.5em;
-  font: inherit;
-}
-
-#home.hero-v2 .hero-typing-line {
-  overflow-wrap: normal;
-}
-
-/* Restore the original condensed headline style */
-.portfolio #home.hero-v2 h1 {
-  margin: 0 0 22px;
-  font-family: Impact, "Arial Narrow", sans-serif;
-  font-size: clamp(32px, 3.5vw, 50px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.portfolio #home.hero-v2 h1 > span {
-  display: table;
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 8px;
-  padding: 3px 8px 6px;
-  background: linear-gradient(115deg, #f0d9a5, #dfbd7e);
-  color: #191813;
-  -webkit-text-fill-color: #191813;
-}
-
-/* Remove the bounded glow that can create a visible edge.
-   The existing orb keeps its own soft aura. */
-#home.hero-v2::before {
-  content: none;
-}
-
-#home.hero-v2 .orb-visual,
-#home.hero-v2 .orb-scene {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-#home.hero-v2 .hv-actions {
-  margin-top: 24px;
-}
-
-#home.hero-v2 .hv-proof {
-  margin-top: 26px;
-}
-
-@media (max-width: 600px) {
-  #home.hero-v2 .hv-role-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-    margin-bottom: 20px;
-  }
-
-  .portfolio #home.hero-v2 h1 {
-    font-size: clamp(30px, 7.5vw, 42px);
   }
 }

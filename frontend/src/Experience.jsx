@@ -3,23 +3,13 @@ import './Experience.css'
 
 const companies = [
   {
-    period: 'September 2026',
-    company: 'Excess Elite',
-    role: 'GoHighLevel & A2P Compliance Specialist',
+    period: '2023 — 2024',
+    company: 'CTRLdone',
+    role: 'GoHighLevel CRM Specialist',
     points: [
-      'Supported A2P 10DLC applications and business messaging registration.',
-      'Reviewed business details, website information and EIN/CP-575 documentation.',
-      'Assisted with LC Phone, SMS configuration and registration troubleshooting.',
-    ],
-  },
-  {
-    period: 'January — August 2026',
-    company: 'NDT Legacy',
-    role: 'GoHighLevel Website & Automation Specialist',
-    points: [
-      'Worked on GoHighLevel websites, memberships, courses and automation.',
-      'Supported CRM configuration and member-facing digital experiences.',
-      'Improved content organization, usability and customer journeys.',
+      'Built and managed CRM systems, workflows and pipelines.',
+      'Configured lead capture forms, calendars, tags and custom fields.',
+      'Supported funnel and website development, troubleshooting and optimization.',
     ],
   },
   {
@@ -33,13 +23,23 @@ const companies = [
     ],
   },
   {
-    period: '2023 — 2024',
-    company: 'CTRLdone',
-    role: 'GoHighLevel CRM Specialist',
+    period: 'January — August 2026',
+    company: 'NDT Legacy',
+    role: 'GoHighLevel Website & Automation Specialist',
     points: [
-      'Built and managed CRM systems, workflows and pipelines.',
-      'Configured lead capture forms, calendars, tags and custom fields.',
-      'Supported funnel and website development, troubleshooting and optimization.',
+      'Worked on GoHighLevel websites, memberships, courses and automation.',
+      'Supported CRM configuration and member-facing digital experiences.',
+      'Improved content organization, usability and customer journeys.',
+    ],
+  },
+  {
+    period: 'September 2026',
+    company: 'Excess Elite',
+    role: 'GoHighLevel & A2P Compliance Specialist',
+    points: [
+      'Supported A2P 10DLC applications and business messaging registration.',
+      'Reviewed business details, website information and EIN/CP-575 documentation.',
+      'Assisted with LC Phone, SMS configuration and registration troubleshooting.',
     ],
   },
 ]

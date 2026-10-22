@@ -1,0 +1,28 @@
+# Muhammad Mudasir
+
+> GoHighLevel CRM and AI automation specialist helping agencies and service businesses connect lead capture, follow-up, and bookings.
+
+## Services
+
+- GoHighLevel CRM setup, pipelines, and workflow automation
+- Websites, landing pages, and sales funnels
+- AI chatbots, voice AI, and lead follow-up
+- Appointment booking, integrations, APIs, and webhooks
+- A2P registration and SMS setup support
+
+## Portfolio
+
+- About: /#about
+- Experience and education: /#experience
+- Services: /#services
+- Client projects: /#projects
+- Contact: /#contact
+
+## Profiles
+
+- LinkedIn: https://www.linkedin.com/in/muhammad-mudasir-947791296
+- Upwork: https://www.upwork.com/freelancers/~0156c5dadee4438e2c
+
+## Contact
+
+- Email: mudassir.ghl@gmail.com

@@ -1,3 +1,16 @@
+:root {
+  --page: #f8f9f3;
+  --ink: #101211;
+  --accent: #ffe000;
+  --card: #202221;
+  --muted: #62665f;
+  --paper-text: #f8f9f3;
+  --card-text: #c8cbc5;
+  --line: #d5d8d1;
+  --card-line: #414440;
+  --heading-font: 'Anton', Impact, 'Arial Narrow', sans-serif;
+}
+
 #services .service-card h3 { color: var(--paper-text); }
 #services .service-card > p { color: var(--card-text); }
 #services .service-number { color: #b7b8aa; }
@@ -131,4 +144,1217 @@
   .portfolio .hero-v2 h1 { font-size: clamp(32px, 8.8vw, 44px); }
   #projects .pg-heading h2,
   #reviews .rv-heading h2 { font-size: clamp(29px, 7.8vw, 38px); }
+}
+
+.portfolio {
+  background: var(--page);
+  color: var(--ink);
+}
+
+.ambient-background {
+  background: var(--page);
+}
+
+.ambient-glow,
+.background-grid {
+  display: none;
+}
+
+.site-header {
+  border-color: #101211;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper-text);
+  backdrop-filter: none;
+}
+
+.brand-symbol {
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.site-header .navigation > a {
+  color: #d2d5ce;
+}
+
+.site-header .navigation > a:hover,
+.site-header .navigation > a[aria-current='location']:not(.nav-cta) {
+  color: var(--accent);
+}
+
+.site-header .navigation .nav-cta {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.site-header .menu-toggle {
+  border-color: #ffffff40;
+  color: var(--paper-text);
+}
+
+.site-header .navigation {
+  border-color: #414440;
+  border-radius: 8px;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.portfolio .hero-section.hero-v2 {
+  color: var(--ink);
+}
+
+.portfolio #home.hero-v2 h1 {
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+  font-family: var(--heading-font);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.portfolio #home.hero-v2 h1 > span {
+  background: color-mix(in srgb, var(--accent) 88%, #ffffff);
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+}
+
+.portfolio :is(
+  #about h2,
+  #experience .rs-intro h2,
+  #services h2,
+  #projects .pg-heading h2,
+  #why-me .wm-heading h2,
+  #process .pr-intro h2,
+  #reviews .rv-heading h2,
+  #faq h2,
+  #contact h2
+) {
+  font-family: var(--heading-font);
+}
+
+.portfolio #home .hv-intro,
+.portfolio #home .hv-description,
+.portfolio #home .hv-markets {
+  color: var(--muted);
+}
+
+.portfolio #home .hv-role-row,
+.portfolio #home .hero-specialties,
+.portfolio #home .hero-typing-cursor {
+  color: var(--ink);
+}
+
+.portfolio #home .hv-primary,
+.portfolio #home .hv-secondary {
+  border-radius: 6px;
+}
+
+.portfolio #home .hv-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.portfolio #home .hv-secondary {
+  border-color: #10121155;
+  color: var(--ink);
+}
+
+.portfolio #home .hv-scroll {
+  color: var(--muted);
+}
+
+.portfolio #home a:focus-visible,
+.portfolio a:focus-visible,
+.portfolio button:focus-visible {
+  outline-color: var(--accent);
+}
+
+.portfolio .hero-v2 .live-availability {
+  border-color: #10121135;
+  background: #ffffffb8;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.portfolio .skip-link {
+  border-radius: 5px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio .language-switch button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio .language-switch button:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--paper-text);
+}
+
+.portfolio .language-switch button[aria-pressed='true']:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.theme-controls {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.theme-mode-button,
+.theme-palette-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #ffffff35;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paper-text);
+}
+
+.theme-palette-wrap {
+  position: relative;
+}
+
+.theme-current-swatch {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--swatch-color);
+}
+
+.theme-palette {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 50;
+  display: grid;
+  gap: 10px;
+  min-width: 176px;
+  padding: 12px;
+  border: 1px solid #414440;
+  border-radius: 7px;
+  background: #202221;
+  color: #f8f9f3;
+  box-shadow: 0 10px 26px #10121130;
+}
+
+.theme-palette[hidden] {
+  display: none;
+}
+
+.theme-palette-label {
+  color: #c8cbc5;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.theme-swatches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-swatch {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid #ffffff55;
+  border-radius: 50%;
+  background: var(--swatch-color);
+}
+
+.theme-swatch[aria-pressed='true'] {
+  outline: 2px solid #f8f9f3;
+  outline-offset: 2px;
+}
+
+.theme-mode-button:hover,
+.theme-palette-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-controls button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.portfolio .live-availability-dot {
+  background: var(--accent);
+  box-shadow: none;
+}
+
+.portfolio .live-availability-dot::after {
+  display: none;
+}
+
+.portfolio .live-availability-clock > span {
+  color: var(--muted);
+}
+
+.portfolio .live-availability-clock time {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-portrait {
+  border-color: #414440;
+  background: var(--card);
+}
+
+.hero-portrait-caption {
+  color: var(--paper-text);
+}
+
+.hero-portrait-caption span {
+  color: var(--card-text);
+}
+
+#about.about-section,
+#services {
+  width: 100%;
+  padding-right: max(20px, calc((100% - 1280px) / 2));
+  padding-left: max(20px, calc((100% - 1280px) / 2));
+  margin-right: 0;
+  margin-left: 0;
+  background: var(--ink);
+  color: var(--paper-text);
+}
+
+#about .about-copy h2,
+#about .about-copy .gradient-text,
+#services h2,
+#services .service-directory-intro h2 {
+  color: var(--paper-text);
+  -webkit-text-fill-color: var(--paper-text);
+}
+
+#about .about-copy .about-paragraph,
+#about .about-copy .about-approach > p,
+#services .directory-description,
+#services .directory-panel > p {
+  color: var(--card-text);
+  -webkit-text-fill-color: var(--card-text);
+}
+
+#about .about-credential {
+  border: 0;
+  border-radius: 3px;
+  background: var(--accent);
+  box-shadow: none;
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+#about .about-approach {
+  border-color: var(--accent);
+  background: #202221;
+}
+
+#experience.rs-section {
+  background: var(--ink);
+  color: var(--paper-text);
+}
+
+#experience .rs-intro h2,
+#experience .rs-highlight {
+  font-family: var(--heading-font);
+}
+
+#experience .rs-highlight {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.portfolio #experience .rs-intro h2 .rs-highlight {
+  background: var(--accent);
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+#experience .rs-kicker,
+#experience .rs-project-label,
+#experience .rs-summary,
+#experience .rs-type {
+  color: var(--card-text);
+}
+
+#experience .rs-date,
+#experience .rs-company {
+  color: var(--accent);
+}
+
+#experience .rs-timeline {
+  border-left-color: var(--accent);
+}
+
+#experience .rs-marker {
+  border-color: var(--ink);
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+#experience .rs-card {
+  border-color: #414440;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: none;
+}
+
+#experience .rs-card h4 {
+  color: var(--paper-text);
+}
+
+#experience .rs-card li {
+  color: var(--card-text);
+}
+
+#experience .rs-card li::marker {
+  color: var(--accent);
+}
+
+#experience .rs-contact {
+  border-color: #ffffff55;
+  color: var(--paper-text);
+}
+
+#services .directory-trigger,
+#services .directory-title,
+#services .directory-toggle {
+  color: var(--paper-text);
+}
+
+#services .directory-number,
+#services .directory-panel li {
+  color: var(--card-text);
+}
+
+#services .directory-panel > a,
+#services .directory-panel li::before {
+  color: var(--accent);
+  background: transparent;
+}
+
+#services .service-directory-list,
+#services .directory-item {
+  border-color: #414440;
+}
+
+#services .directory-item.is-open {
+  background: #202221;
+}
+
+#services .directory-toggle {
+  border-color: #73776f;
+}
+
+#services .directory-item.is-open .directory-toggle {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#services .service-card {
+  border-color: #414440;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: none;
+}
+
+#services .service-card :is(h3, p, .service-number) {
+  color: var(--paper-text);
+}
+
+#services .service-icon {
+  border-color: var(--accent);
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#services .service-tags li {
+  border-color: #414440;
+  background: #101211;
+  color: var(--card-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #services .service-card:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: none;
+    transform: translateY(-3px);
+  }
+
+  #services .service-card:hover :is(h3, p, .service-number) {
+    color: var(--ink);
+    -webkit-text-fill-color: var(--ink);
+  }
+
+  #services .service-card:hover .service-icon {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--accent);
+  }
+
+  #services .service-card:hover .service-tags li {
+    border-color: #10121155;
+    background: #10121110;
+    color: var(--ink);
+  }
+}
+
+#services .service-border-glow {
+  display: none;
+}
+
+#projects.pg-section,
+#reviews.rv-section,
+.wm-section,
+#faq.faq-section,
+#process.pr-section {
+  background: var(--page);
+  color: var(--ink);
+}
+
+#projects .pg-heading h2,
+#reviews .rv-heading h2,
+.wm-section .wm-heading h2,
+.faq-intro h2,
+#process .pr-intro h2 {
+  color: var(--ink);
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
+#projects .pg-heading h2 > span,
+#reviews .rv-heading h2 span,
+.wm-section .wm-heading h2 span,
+#process .pr-intro h2 mark {
+  background: var(--accent);
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+#projects .pg-description,
+#projects .pg-toolbar,
+#reviews .rv-note,
+#reviews .rv-hint,
+.wm-description,
+.faq-description,
+.faq-contact p,
+.faq-answer p,
+#process .pr-summary {
+  color: var(--muted);
+}
+
+#projects .pg-filters button,
+#projects .pg-toolbar button,
+#reviews .rv-mobile-controls button {
+  border-color: #10121155;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+}
+
+#projects .pg-filters button:is(:hover, [aria-pressed='true']),
+#process .pr-cta {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#projects .pg-card,
+#reviews .rv-card,
+#why-me .wm-card,
+#process .pr-card {
+  border-color: #414440;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: none;
+}
+
+#projects .pg-card,
+#reviews .rv-card,
+#why-me .wm-card,
+#process .pr-card {
+  color: var(--paper-text);
+}
+
+#projects .pg-card-footer,
+#reviews .rv-person {
+  border-color: #414440;
+}
+
+#projects .pg-card-footer strong,
+#reviews .rv-card h3,
+#reviews .rv-person strong,
+#why-me .wm-card h3 {
+  color: var(--paper-text);
+}
+
+#projects .pg-card-footer small,
+#projects .pg-browser,
+#reviews .rv-sample,
+#reviews .rv-card blockquote,
+#reviews .rv-person small,
+#why-me .wm-card-copy p,
+#process .pr-card p {
+  color: var(--card-text);
+}
+
+#projects .pg-card-footer > svg,
+#reviews .rv-stars,
+#why-me .wm-label,
+#why-me .wm-cta,
+#process .pr-number,
+#process .pr-card small {
+  color: var(--accent);
+}
+
+#why-me .wm-featured {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+#why-me .wm-featured :is(h3, .wm-label, .wm-number, .wm-card-copy p, .wm-cta) {
+  color: var(--ink);
+}
+
+#why-me .wm-card::before {
+  display: none;
+}
+
+#why-me .wm-card:focus-within :is(h3, span, small, strong, a, svg, p) {
+  color: var(--ink);
+}
+
+#process .pr-timeline {
+  border-color: var(--accent);
+}
+
+#process .pr-icon {
+  border-color: var(--accent);
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#faq .faq-contact,
+#faq .faq-list,
+#faq .faq-item {
+  border-color: var(--line);
+}
+
+#faq .faq-item summary,
+#faq .faq-item summary > svg,
+#faq .faq-contact a,
+#faq .faq-number {
+  color: var(--ink);
+}
+
+#faq .faq-item[open] {
+  background: #ffe00024;
+}
+
+#contact .contact-panel,
+#contact .enquiry-panel,
+#contact .enquiry-thanks {
+  border-color: #414440;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: none;
+  color: var(--paper-text);
+}
+
+#contact .contact-panel::before,
+#contact .enquiry-panel::after,
+#contact .enquiry-control::after {
+  display: none;
+}
+
+#contact :is(.contact-copy h2, .contact-days, .enquiry-heading h3, .enquiry-field > span:first-child) {
+  color: var(--paper-text);
+}
+
+#contact :is(.contact-description, .contact-markets, .contact-time-note, .contact-socials > span, .enquiry-heading p, .enquiry-heading small, .enquiry-consent, .enquiry-note, .enquiry-thanks p) {
+  color: var(--card-text);
+}
+
+#contact :is(.contact-status, .contact-email-address, .contact-socials a) {
+  color: var(--accent);
+}
+
+#contact .contact-status > span {
+  background: var(--accent);
+  box-shadow: none;
+}
+
+#contact .contact-email-button,
+#contact .enquiry-feedback {
+  border-color: #414440;
+  background: transparent;
+  color: var(--paper-text);
+}
+
+#contact .enquiry-field :is(input, select, textarea),
+#contact .enquiry-field option {
+  border-color: #555a54;
+  background: #101211;
+  color: var(--paper-text);
+}
+
+#contact .enquiry-field :is(input, select, textarea):focus {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.portfolio-footer {
+  border-color: var(--line);
+}
+
+.footer-brand,
+.footer-brand span,
+.footer-top {
+  color: var(--ink);
+}
+
+.portfolio-footer p {
+  color: var(--muted);
+}
+
+.btt-button {
+  background: var(--ink);
+  color: var(--accent);
+}
+
+.btt-tooltip {
+  border-color: #414440;
+  background: var(--card);
+  color: var(--paper-text);
+}
+
+.portfolio .site-header .nav-cta {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio .site-header .nav-cta:hover,
+.portfolio .site-header .nav-cta[aria-current='location'] {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio .site-header a:focus-visible,
+.portfolio .site-header button:focus-visible {
+  outline-color: var(--accent);
+}
+
+.portfolio #home .hv-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio #home .hv-secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
+.portfolio .portrait-badge {
+  border-color: #414440;
+  border-radius: 5px;
+  background: #202221;
+  color: #f8f9f3;
+}
+
+.portfolio .badge-star,
+.portfolio .wm-cta {
+  color: var(--accent);
+}
+
+.portfolio .wm-cta {
+  border-color: #10121155;
+}
+
+#reviews .rv-source {
+  border-color: #414440;
+  border-radius: 50%;
+  background: #202221;
+  color: var(--accent);
+}
+
+#reviews .rv-source:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, #202221);
+}
+
+#contact .contact-social-links > a {
+  border-color: #414440;
+  border-radius: 6px;
+  background: #202221;
+  color: #f8f9f3;
+}
+
+#contact .contact-social-links > a:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, #202221);
+}
+
+.portfolio-footer .footer-social-links > a {
+  border-color: #414440;
+  border-radius: 6px;
+  background: #202221;
+  color: #f8f9f3;
+}
+
+.portfolio-footer .footer-social-links > a:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, #202221);
+}
+
+.portfolio-footer .social-brand-icon img,
+#contact .social-brand-icon img {
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.portfolio .btt-button:focus-visible {
+  outline-color: var(--accent);
+}
+
+.portfolio[data-mode='dark'] {
+  --page: #101211;
+  --muted: #b7bbb4;
+  --line: #414440;
+}
+
+.portfolio[data-mode='dark'] #home,
+.portfolio[data-mode='dark'] #projects.pg-section,
+.portfolio[data-mode='dark'] #reviews.rv-section,
+.portfolio[data-mode='dark'] .wm-section,
+.portfolio[data-mode='dark'] #faq.faq-section,
+.portfolio[data-mode='dark'] #process.pr-section {
+  background: var(--page);
+  color: var(--paper-text);
+}
+
+.portfolio[data-mode='dark'] #home .hv-role-row,
+.portfolio[data-mode='dark'] #home h1,
+.portfolio[data-mode='dark'] #home .hv-secondary,
+.portfolio[data-mode='dark'] #projects .pg-heading h2,
+.portfolio[data-mode='dark'] #reviews .rv-heading h2,
+.portfolio[data-mode='dark'] #why-me .wm-heading h2,
+.portfolio[data-mode='dark'] #process .pr-intro h2,
+.portfolio[data-mode='dark'] #faq h2,
+.portfolio[data-mode='dark'] #faq .faq-item summary,
+.portfolio[data-mode='dark'] #faq .faq-contact a {
+  color: var(--paper-text);
+  -webkit-text-fill-color: var(--paper-text);
+}
+
+.portfolio[data-mode='dark'] #home h1 > span,
+.portfolio[data-mode='dark'] #projects .pg-heading h2 > span,
+.portfolio[data-mode='dark'] #reviews .rv-heading h2 > span,
+.portfolio[data-mode='dark'] #why-me .wm-heading h2 > span,
+.portfolio[data-mode='dark'] #process .pr-intro h2 > mark,
+.portfolio[data-mode='dark'] #faq h2 .gradient-text {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+}
+
+.portfolio[data-mode='dark'] #home .hv-intro,
+.portfolio[data-mode='dark'] #home .hv-description,
+.portfolio[data-mode='dark'] #home .hv-markets,
+.portfolio[data-mode='dark'] #projects .pg-description,
+.portfolio[data-mode='dark'] #reviews .rv-note,
+.portfolio[data-mode='dark'] #reviews .rv-hint,
+.portfolio[data-mode='dark'] .wm-description,
+.portfolio[data-mode='dark'] #faq .faq-description,
+.portfolio[data-mode='dark'] #faq .faq-answer p,
+.portfolio[data-mode='dark'] #process .pr-summary {
+  color: var(--card-text);
+}
+
+.portfolio[data-mode='dark'] #projects .pg-filters button,
+.portfolio[data-mode='dark'] #projects .pg-toolbar button,
+.portfolio[data-mode='dark'] #reviews .rv-mobile-controls button {
+  border-color: #555a54;
+  background: #202221;
+  color: var(--paper-text);
+}
+
+.portfolio[data-mode='dark'] #projects .pg-filters button:is(:hover, [aria-pressed='true']) {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio[data-mode='dark'] #faq .faq-item summary > svg,
+.portfolio[data-mode='dark'] #faq .faq-number {
+  color: var(--accent);
+}
+
+.portfolio[data-mode='dark'] .footer-brand,
+.portfolio[data-mode='dark'] .footer-brand span,
+.portfolio[data-mode='dark'] .portfolio-footer p {
+  color: var(--paper-text);
+}
+
+@media (max-width: 760px) {
+  .theme-controls {
+    gap: 3px;
+  }
+
+  .theme-mode-button,
+  .theme-palette-button {
+    width: 29px;
+    height: 29px;
+  }
+
+  .theme-mode-button svg,
+  .theme-palette-button svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .site-header .header-controls {
+    gap: 5px;
+  }
+
+  .site-header .language-switch {
+    gap: 0;
+    padding: 2px;
+  }
+
+  .site-header .language-switch button {
+    min-width: 29px;
+    min-height: 30px;
+    padding: 4px;
+  }
+
+  .site-header .menu-toggle {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+}
+
+.portfolio #projects .pg-heading h2,
+.portfolio #reviews .rv-heading h2,
+.portfolio #why-me .wm-heading h2,
+.portfolio #process .pr-intro h2,
+.portfolio #faq h2 {
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+.portfolio #home h1 > span,
+.portfolio #about h2 .gradient-text,
+.portfolio #experience .rs-intro h2 .rs-highlight,
+.portfolio #services h2 .gradient-text,
+.portfolio #projects .pg-heading h2 > span,
+.portfolio #why-me .wm-heading h2 > span,
+.portfolio #process .pr-intro h2 > mark,
+.portfolio #reviews .rv-heading h2 > span,
+.portfolio #faq h2 .gradient-text,
+.portfolio #contact h2 .gradient-text {
+  background: var(--accent);
+  background-image: none;
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+
+.portfolio #home.hero-v2 h1 > span {
+  display: inline;
+  width: auto;
+  max-width: 100%;
+  margin-top: 0;
+  padding: 0 0.14em 0.08em;
+  border-radius: 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.portfolio #skills .sk-ribbon-1 {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+#reviews .rv-eyebrow,
+#reviews .rv-eyebrow::before,
+#why-me .wm-eyebrow,
+#faq .eyebrow {
+  color: var(--ink);
+}
+
+#reviews .rv-trust > a,
+#reviews .rv-trust > span {
+  border-color: #10121155;
+  background: transparent;
+  color: var(--muted);
+}
+
+#reviews .rv-work-link,
+#reviews .rv-mobile-controls button {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#reviews .rv-platform {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+#why-me .wm-card:not(.wm-featured):hover :is(h3, span, small, strong, a, svg, p),
+#why-me .wm-card:not(.wm-featured):focus-within :is(h3, span, small, strong, a, svg, p) {
+  color: var(--paper-text);
+  -webkit-text-fill-color: var(--paper-text);
+}
+
+#why-me .wm-card:not(.wm-featured):hover .wm-label,
+#why-me .wm-card:not(.wm-featured):hover .wm-cta,
+#why-me .wm-card:not(.wm-featured):focus-within .wm-label,
+#why-me .wm-card:not(.wm-featured):focus-within .wm-cta {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
+#contact.contact-section {
+  width: 100%;
+  padding-inline: max(16px, calc((100% - 1280px) / 2));
+  background: var(--ink);
+  color: var(--paper-text);
+}
+
+#contact .contact-availability {
+  border-color: #414440;
+}
+
+#contact .contact-socials {
+  border-color: #414440;
+}
+
+#contact .contact-email-button:hover {
+  background: #ffe00020;
+}
+
+#contact .enquiry-feedback a {
+  color: var(--accent);
+}
+
+#faq .faq-item summary:focus-visible,
+#faq .faq-contact a:focus-visible {
+  outline-color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  #about.about-section,
+  #services {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.portfolio .brand-symbol,
+.portfolio .language-switch button[aria-pressed='true'],
+.portfolio .navigation .nav-cta,
+.portfolio #home .hv-primary,
+.portfolio .primary-button,
+#about .about-credential,
+#experience .rs-highlight,
+#services .service-icon,
+#projects .pg-filters button:is(:hover, [aria-pressed='true']),
+#reviews .rv-work-link,
+#reviews .rv-mobile-controls button,
+#reviews .rv-platform,
+#why-me .wm-featured,
+#process .pr-cta,
+#process .pr-icon {
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+}
+
+.portfolio .brand-symbol,
+.portfolio .language-switch button[aria-pressed='true'],
+.portfolio .navigation .nav-cta,
+.portfolio #home .hv-primary,
+.portfolio .primary-button,
+#about .about-credential,
+#experience .rs-highlight,
+#services .service-icon,
+#projects .pg-filters button:is(:hover, [aria-pressed='true']),
+#reviews .rv-work-link,
+#reviews .rv-mobile-controls button,
+#reviews .rv-platform,
+#why-me .wm-featured,
+#process .pr-cta,
+#process .pr-icon {
+  background: var(--accent);
+  background-image: none;
+  border-color: var(--accent);
+}
+
+#about .about-credential {
+  box-shadow: none;
+}
+
+.portfolio #about .about-copy .about-paragraph .about-credential {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+}
+
+#about .about-approach {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, #202221);
+}
+
+#about .about-approach > strong,
+#about .availability-dot,
+.portfolio-footer .footer-brand span {
+  color: var(--accent);
+}
+
+#about .availability-dot {
+  background: var(--accent);
+  box-shadow: none;
+}
+
+.portfolio .stats-grid {
+  border-color: color-mix(in srgb, var(--accent) 18%, #414440);
+  background: color-mix(in srgb, var(--accent) 5%, #101211);
+}
+
+.portfolio .stat-card + .stat-card {
+  border-color: color-mix(in srgb, var(--accent) 18%, #414440);
+}
+
+.portfolio .stat-card dt {
+  color: var(--card-text);
+}
+
+.portfolio .stat-card dd {
+  color: var(--accent);
+}
+
+#experience .rs-date,
+#experience .rs-company,
+#projects .pg-heading h2 > span,
+#reviews .rv-stars,
+#why-me .wm-label,
+#why-me .wm-cta,
+#process .pr-number,
+#process .pr-card small,
+#contact :is(.contact-status, .contact-email-address, .contact-socials a),
+.btt-button {
+  color: var(--accent);
+}
+
+#experience .rs-marker,
+#services .directory-item.is-open .directory-toggle,
+#projects .pg-play,
+#contact .contact-status > span {
+  background-color: var(--accent);
+}
+
+#projects .pg-filters button:is(:hover, [aria-pressed='true']) {
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+#projects .pg-card:hover {
+  border-color: var(--accent);
+}
+
+.portfolio #reviews .rv-card:hover,
+.portfolio #experience .rs-card:hover,
+.portfolio #why-me .wm-card:hover {
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+#reviews .rv-avatar {
+  border-color: color-mix(in srgb, var(--accent) 40%, #414440);
+  background: color-mix(in srgb, var(--accent) 12%, #202221);
+  color: var(--accent);
+}
+
+#reviews .rv-trust > a:hover,
+#reviews .rv-trust > span:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+#why-me .wm-featured :is(h3, .wm-label, .wm-number, .wm-card-copy p, .wm-cta) {
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+}
+
+#why-me .wm-card:not(.wm-featured):hover .wm-label,
+#why-me .wm-card:not(.wm-featured):hover .wm-cta,
+#why-me .wm-card:not(.wm-featured):focus-within .wm-label,
+#why-me .wm-card:not(.wm-featured):focus-within .wm-cta {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
+#process .pr-icon {
+  color: var(--accent-contrast);
+}
+
+#contact .contact-email-button:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.portfolio #main .primary-button,
+.portfolio #contact .primary-button,
+#reviews .rv-work-link {
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--accent);
+  background-image: none;
+  color: var(--accent-contrast);
+  -webkit-text-fill-color: var(--accent-contrast);
+  box-shadow: none;
+}
+
+.portfolio #main .primary-button:hover,
+.portfolio #contact .primary-button:hover,
+#reviews .rv-work-link:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  background-image: none;
+  color: var(--accent-contrast);
+  filter: brightness(0.94);
+  box-shadow: none;
+}
+
+#contact .contact-email-button {
+  border-color: color-mix(in srgb, var(--accent) 55%, #414440);
+  background: transparent;
+  color: var(--paper-text);
+}
+
+#contact .contact-email-button:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
