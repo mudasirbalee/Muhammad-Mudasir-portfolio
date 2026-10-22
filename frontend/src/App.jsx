@@ -62,11 +62,12 @@ export default function App() {
 
   const [themeMode, setThemeMode] = useState(() => {
     try {
-      return localStorage.getItem('portfolio-theme-mode') === 'dark'
-        ? 'dark'
-        : 'light'
+      const savedMode = localStorage.getItem('portfolio-theme-mode')
+      return savedMode === 'light' || savedMode === 'dark'
+        ? savedMode
+        : 'dark'
     } catch {
-      return 'light'
+      return 'dark'
     }
   })
 
@@ -127,6 +128,12 @@ export default function App() {
       // Language switching also works without browser storage.
     }
   }, [language])
+
+  useEffect(() => {
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', themeMode === 'dark' ? '#101211' : '#F8F9F3')
+  }, [themeMode])
 
   useEffect(() => {
     if (!paletteOpen) return
