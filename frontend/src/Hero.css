@@ -77,9 +77,9 @@
   text-wrap: balance;
 }
 
-.hero-v2 h1 > span {
+.hero-v2 .hv-headline-highlight-text {
   display: block;
-  margin-top: 8px;
+  margin-top: 0;
   color: #101211;
   background: #ffe000;
   -webkit-background-clip: text;

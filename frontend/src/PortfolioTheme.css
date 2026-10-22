@@ -113,7 +113,7 @@
 
 /* Keep heading highlights attached to their text instead of filling the row. */
 .portfolio .gradient-text,
-.portfolio .hero-v2 h1 > span,
+.portfolio #home .hv-headline-highlight-text,
 #projects .pg-heading h2 > span,
 #reviews .rv-heading h2 span,
 .wm-section .wm-heading h2 span {
@@ -128,7 +128,7 @@
   letter-spacing: 0;
   text-wrap: pretty;
 }
-.portfolio .hero-v2 h1 > span {
+.portfolio #home .hv-headline-highlight-text {
   text-wrap: pretty;
   word-break: normal;
   overflow-wrap: normal;
@@ -206,6 +206,10 @@
 }
 
 .portfolio #home.hero-v2 h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4em;
   color: var(--ink);
   -webkit-text-fill-color: var(--ink);
   font-family: var(--heading-font);
@@ -214,10 +218,34 @@
   text-transform: uppercase;
 }
 
-.portfolio #home.hero-v2 h1 > span {
+.portfolio #home.hero-v2 h1 > .hv-headline-main {
+  display: block;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
+
+.portfolio #home.hero-v2 h1 > .hv-headline-highlight {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  text-wrap: pretty;
+}
+
+.portfolio #home .hv-headline-highlight-text {
+  display: inline;
+  padding: 0 0.14em 0.08em;
+  border-radius: 3px;
   background: color-mix(in srgb, var(--accent) 88%, #ffffff);
   color: var(--accent-contrast);
   -webkit-text-fill-color: var(--accent-contrast);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-wrap: pretty;
 }
 
 .portfolio :is(
@@ -967,7 +995,7 @@
   -webkit-text-fill-color: var(--paper-text);
 }
 
-.portfolio[data-mode='dark'] #home h1 > span,
+.portfolio[data-mode='dark'] #home .hv-headline-highlight-text,
 .portfolio[data-mode='dark'] #projects .pg-heading h2 > span,
 .portfolio[data-mode='dark'] #reviews .rv-heading h2 > span,
 .portfolio[data-mode='dark'] #why-me .wm-heading h2 > span,
@@ -1064,7 +1092,7 @@
   -webkit-text-fill-color: var(--ink);
 }
 
-.portfolio #home h1 > span,
+.portfolio #home .hv-headline-highlight-text,
 .portfolio #about h2 .gradient-text,
 .portfolio #experience .rs-intro h2 .rs-highlight,
 .portfolio #services h2 .gradient-text,
@@ -1080,15 +1108,8 @@
   -webkit-text-fill-color: var(--ink);
 }
 
-.portfolio #home.hero-v2 h1 > span {
-  display: inline;
-  width: auto;
+.portfolio #home.hero-v2 .hv-headline-highlight-text {
   max-width: 100%;
-  margin-top: 0;
-  padding: 0 0.14em 0.08em;
-  border-radius: 3px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .portfolio #skills .sk-ribbon-1 {

@@ -78,14 +78,17 @@ export default function Hero({ language = 'en' }) {
         </div>
 
         <h1 id="hero-title">
-          {es
-            ? 'Menos trabajo manual.'
-            : 'Less Manual Work.'}
-          <br />
-          <span>
+          <span className="hv-headline-main">
             {es
-              ? 'Más oportunidades que avanzan.'
-              : 'More Leads Moving Forward.'}
+              ? 'Menos trabajo manual.'
+              : 'Less Manual Work.'}
+          </span>
+          <span className="hv-headline-highlight">
+            <span className="hv-headline-highlight-text">
+              {es
+                ? 'Más oportunidades que avanzan.'
+                : 'More Leads Moving Forward.'}
+            </span>
           </span>
         </h1>
 

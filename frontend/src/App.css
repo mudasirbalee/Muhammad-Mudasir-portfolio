@@ -2837,7 +2837,7 @@ html {
 }
 
 /* Golden highlight ONLY on the bottom line */
-.portfolio #home h1 > span,
+.portfolio #home .hv-headline-highlight-text,
 .portfolio #about h2 .gradient-text,
 .portfolio #experience .rs-intro h2 .rs-highlight,
 .portfolio #services h2 .gradient-text,
