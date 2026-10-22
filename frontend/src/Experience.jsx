@@ -164,7 +164,6 @@ export default function Experience({ language = 'en' }) {
 
       items.forEach(item => {
         item.classList.remove('rs-repeat', 'rs-in')
-        item.style.removeProperty('--rs-enter-y')
       })
 
       if (
@@ -182,14 +181,6 @@ export default function Experience({ language = 'en' }) {
             if (entry.isIntersecting) {
               item.classList.add('rs-in')
             } else {
-              const above =
-                entry.boundingClientRect.bottom <= 0
-
-              item.style.setProperty(
-                '--rs-enter-y',
-                above ? '-35px' : '35px'
-              )
-
               item.classList.remove('rs-in')
             }
           })
@@ -215,7 +206,6 @@ export default function Experience({ language = 'en' }) {
 
       items.forEach(item => {
         item.classList.remove('rs-repeat', 'rs-in')
-        item.style.removeProperty('--rs-enter-y')
       })
     }
   }, [])
