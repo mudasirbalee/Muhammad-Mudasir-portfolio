@@ -275,21 +275,24 @@
 
   #experience .rs-timeline > .rs-period.rs-repeat .rs-card {
     opacity: 0;
-    translate: 10px 0;
+    translate: 75px 0;
+    filter: blur(4px);
     transition:
-      opacity 260ms ease,
-      translate 320ms ease-out;
+      opacity 750ms ease,
+      translate 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 850ms ease;
   }
 
   #experience .rs-timeline > .rs-period.rs-repeat.rs-in .rs-card {
     opacity: 1;
     translate: 0 0;
+    filter: blur(0);
   }
 }
 
 @media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
   #experience .rs-timeline > .rs-period.rs-repeat .rs-card {
-    translate: 8px 0;
+    translate: 35px 0;
   }
 
   #experience .rs-timeline > .rs-period.rs-repeat.rs-in .rs-card {
@@ -301,6 +304,7 @@
   #experience .rs-timeline > .rs-period.rs-repeat .rs-card {
     opacity: 1;
     translate: none;
+    filter: none;
     transition: none;
   }
 }
