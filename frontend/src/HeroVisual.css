@@ -7,6 +7,7 @@
   border-radius: 8px;
   background: #202221;
   padding: 15px 15px 0;
+  transition: border-color 300ms ease;
 }
 
 .hero-portrait-image {
@@ -16,6 +17,26 @@
   object-fit: cover;
   object-position: center top;
   border-radius: 4px;
+  transform: scale(1);
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and
+  (prefers-reduced-motion: no-preference) {
+  .hero-portrait:hover {
+    border-color: var(--accent);
+  }
+
+  .hero-portrait:hover .hero-portrait-image {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait,
+  .hero-portrait-image {
+    transition: none;
+  }
 }
 
 .hero-portrait-caption {
